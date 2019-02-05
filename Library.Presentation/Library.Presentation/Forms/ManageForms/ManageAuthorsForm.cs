@@ -8,8 +8,8 @@ namespace Library.Presentation.Forms.ManageForms
 {
     public partial class ManageAuthorsForm : Form
     {
-        private AuthorRepository _allAuthors;
-        private BookRepository _allBooks;
+        private AuthorRepository _authorRepository;
+        private BookRepository _bookRepository;
         public ManageAuthorsForm()
         {
             
@@ -19,10 +19,10 @@ namespace Library.Presentation.Forms.ManageForms
 
         private void RefreshAuthorsListBox()
         {
-            _allAuthors = new AuthorRepository();
-            _allBooks = new BookRepository();
+            _authorRepository = new AuthorRepository();
+            _bookRepository = new BookRepository();
             AuthorsListBox.Items.Clear();
-            foreach (var author in _allAuthors.GetAllAuthors().OrderBy(author => author.LastName).ThenBy(author => author.Name))
+            foreach (var author in _authorRepository.GetAllAuthors().OrderBy(author => author.LastName).ThenBy(author => author.Name))
             {
                 AuthorsListBox.Items.Add(author.ToString());
             }
@@ -48,10 +48,10 @@ namespace Library.Presentation.Forms.ManageForms
         {
             AuthorInfoListBox.Items.Clear();
             var selected = AuthorsListBox.SelectedItem.ToString();
-            var checkedAuthor = _allAuthors.GetAllAuthors()
+            var checkedAuthor = _authorRepository.GetAllAuthors()
                 .FirstOrDefault(author => author.ToString() == selected);
 
-            foreach (var book in _allBooks.GetBooksByAuthor(checkedAuthor))
+            foreach (var book in _bookRepository.GetBooksByAuthor(checkedAuthor))
             {
                 AuthorInfoListBox.Items.Add(book.Name);
             }

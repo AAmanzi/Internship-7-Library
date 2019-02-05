@@ -8,7 +8,7 @@ namespace Library.Presentation.Forms.ManageForms
 {
     public partial class ManageStudentsForm : Form
     {
-        private StudentRepository _allStudents;
+        private StudentRepository _studentRepository;
         public ManageStudentsForm()
         {
             InitializeComponent();
@@ -17,9 +17,9 @@ namespace Library.Presentation.Forms.ManageForms
 
         private void RefreshStudentsListBox()
         {
-            _allStudents = new StudentRepository();
+            _studentRepository = new StudentRepository();
             StudentsListBox.Items.Clear();
-            foreach (var student in _allStudents.GetAllStudents().OrderBy(student => student.LastName).ThenBy(student => student.Name))
+            foreach (var student in _studentRepository.GetAllStudents().OrderBy(student => student.LastName).ThenBy(student => student.Name))
             {
                 StudentsListBox.Items.Add(student.ToString());
             }
@@ -43,7 +43,7 @@ namespace Library.Presentation.Forms.ManageForms
         {
             StudentInfoListBox.Items.Clear();
             var selected = StudentsListBox.SelectedItem.ToString();
-            var checkedStudent = _allStudents.GetAllStudents()
+            var checkedStudent = _studentRepository.GetAllStudents()
                 .FirstOrDefault(student => student.ToString() == selected);
 
             if (checkedStudent == null)

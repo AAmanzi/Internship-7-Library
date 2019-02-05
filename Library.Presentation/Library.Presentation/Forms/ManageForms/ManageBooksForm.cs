@@ -8,7 +8,7 @@ namespace Library.Presentation.Forms.ManageForms
 {
     public partial class ManageBooksForm : Form
     {
-        private BookRepository _allBooks;
+        private BookRepository _bookRepository;
         public ManageBooksForm()
         {
             InitializeComponent();
@@ -17,9 +17,9 @@ namespace Library.Presentation.Forms.ManageForms
 
         private void RefreshBooksListBox()
         {
-            _allBooks = new BookRepository();
+            _bookRepository = new BookRepository();
             BooksListBox.Items.Clear();
-            foreach (var book in _allBooks.GetAllBooks().OrderBy(book => book.Name).ThenBy(book => book.Publisher))
+            foreach (var book in _bookRepository.GetAllBooks().OrderBy(book => book.Name).ThenBy(book => book.Publisher))
             {
                 BooksListBox.Items.Add(book);
             }
@@ -44,7 +44,7 @@ namespace Library.Presentation.Forms.ManageForms
         {
             BookInfoListBox.Items.Clear();
             var selected = BooksListBox.SelectedItem.ToString();
-            var checkedBook = _allBooks.GetAllBooks()
+            var checkedBook = _bookRepository.GetAllBooks()
                 .FirstOrDefault(book => book.ToString() == selected);
 
             if (checkedBook == null)

@@ -15,17 +15,17 @@ namespace Library.Presentation.Forms.AddForms
 {
     public partial class AddBorrowEventForm : Form
     {
-        private StudentRepository _allStudents;
-        private BookRepository _allBooks;
-        private BookCopyRepository _allBookCopies;
-        private BorrowEventRepository _allBorrowEvents;
+        private StudentRepository _studentRepository;
+        private BookRepository _bookRepository;
+        private BookCopyRepository _bookCopyRepository;
+        private BorrowEventRepository _borrowEventRepository;
 
         public AddBorrowEventForm()
         {
-            _allStudents = new StudentRepository();
-            _allBooks = new BookRepository();
-            _allBookCopies = new BookCopyRepository();
-            _allBorrowEvents = new BorrowEventRepository();
+            _studentRepository = new StudentRepository();
+            _bookRepository = new BookRepository();
+            _bookCopyRepository = new BookCopyRepository();
+            _borrowEventRepository = new BorrowEventRepository();
             InitializeComponent();
             RefreshBooksListBox();
             LoadStudentComboBox();
@@ -33,12 +33,12 @@ namespace Library.Presentation.Forms.AddForms
 
         private void RefreshBooksListBox()
         {
-            _allStudents = new StudentRepository();
-            _allBooks = new BookRepository();
-            _allBookCopies = new BookCopyRepository();
-            _allBorrowEvents = new BorrowEventRepository();
+            _studentRepository = new StudentRepository();
+            _bookRepository = new BookRepository();
+            _bookCopyRepository = new BookCopyRepository();
+            _borrowEventRepository = new BorrowEventRepository();
             BooksListBox.Items.Clear();
-            foreach (var book in _allBooks.GetAllBooks().OrderBy(book => book.Name).ThenBy(book => book.Publisher))
+            foreach (var book in _bookRepository.GetAllBooks().OrderBy(book => book.Name).ThenBy(book => book.Publisher))
             {
                 BooksListBox.Items.Add(book);
             }
@@ -46,18 +46,10 @@ namespace Library.Presentation.Forms.AddForms
 
         private void LoadStudentComboBox()
         {
-            foreach (var student in _allStudents.GetAllStudents())
+            foreach (var student in _studentRepository.GetAllStudents())
             {
                 StudentComboBox.Items.Add(student);
             }
-        }
-
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            var confirmCancel = new ConfirmForm();
-            confirmCancel.ShowDialog();
-            if (confirmCancel.IsConfirmed)
-                Close();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -69,29 +61,40 @@ namespace Library.Presentation.Forms.AddForms
                 return;
             }
             
-            var studentToAdd = _allStudents.GetAllStudents()
+            var studentToAdd = _studentRepository.GetAllStudents()
                 .FirstOrDefault(student => student.ToString() == StudentComboBox.Text);
 
             foreach (var checkedItem in BooksListBox.CheckedItems)
             {
-                var bookCopyToAdd = _allBookCopies.GetAllBookCopies().First(bookCopy =>
+                var bookToAdd = _bookRepository.GetAllBooks()
+                    .FirstOrDefault(book => book.ToString() == checkedItem.ToString());
+                var isAvailable = _bookRepository.IsBookAvailable(bookToAdd);
+
+                if (!isAvailable)
+                {
+                    var copiesError = new ErrorForm($"There are no available copies of {bookToAdd}!");
+                    copiesError.ShowDialog();
+                    continue;
+                }
+
+                var bookCopyToAdd = _bookCopyRepository.GetAllBookCopies().First(bookCopy =>
                     bookCopy.Book.ToString() == checkedItem.ToString()
                     && bookCopy.Status == BookStatus.Available);
 
-                if (bookCopyToAdd == null)
-                {
-                    var copiesError = new ErrorForm("There are no available copies of that book!");
-                }
-
                 var eventToAdd = new BorrowEvent(DateOfRentPicker.Value, null, studentToAdd, bookCopyToAdd);
-                _allBorrowEvents.AddBorrowEvent(eventToAdd);
+                _borrowEventRepository.AddBorrowEvent(eventToAdd);
             }
-
+            Close();
         }
 
         private bool CheckForErrors()
         {
             return (string.IsNullOrWhiteSpace(StudentComboBox.Text) || BooksListBox.CheckedItems.Count == 0);
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

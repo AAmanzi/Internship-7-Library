@@ -15,10 +15,10 @@ namespace Library.Presentation.Forms.AddForms
 {
     public partial class AddStudentForm : Form
     {
-        private readonly StudentRepository _allStudents;
+        private readonly StudentRepository _studentRepository;
         public AddStudentForm()
         {
-            _allStudents = new StudentRepository();
+            _studentRepository = new StudentRepository();
             InitializeComponent();
             LoadSexComboBox();
             LoadClassComboBox();
@@ -54,7 +54,7 @@ namespace Library.Presentation.Forms.AddForms
         {
             if (CheckForErrors())
             {
-                var fieldsError = new ErrorForm();
+                var fieldsError = new ErrorForm("You are missing some required fields!");
                 fieldsError.ShowDialog();
                 return;
             }
@@ -68,7 +68,7 @@ namespace Library.Presentation.Forms.AddForms
                 SchoolClass = (SchoolClass)Enum.Parse(typeof(SchoolClass), ClassComboBox.Text)
             };
 
-            _allStudents.AddStudent(toAdd);
+            _studentRepository.AddStudent(toAdd);
             Close();
         }
 

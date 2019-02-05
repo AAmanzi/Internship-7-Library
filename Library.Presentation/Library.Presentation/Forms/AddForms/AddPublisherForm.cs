@@ -14,10 +14,10 @@ namespace Library.Presentation.Forms.AddForms
 {
     public partial class AddPublisherForm : Form
     {
-        private readonly PublisherRepository _allPublishers;
+        private readonly PublisherRepository _publisherRepository;
         public AddPublisherForm()
         {
-            _allPublishers = new PublisherRepository();
+            _publisherRepository = new PublisherRepository();
             InitializeComponent();
         }
 
@@ -43,7 +43,7 @@ namespace Library.Presentation.Forms.AddForms
                 Name = NameTextBox.Text
             };
 
-            _allPublishers.AddPublisher(toAdd);
+            _publisherRepository.AddPublisher(toAdd);
             Close();
         }
 

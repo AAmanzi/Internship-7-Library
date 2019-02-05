@@ -16,16 +16,16 @@ namespace Library.Presentation.Forms.AddForms
 {
     public partial class AddBookForm : Form
     {
-        private readonly BookRepository _allBooks;
-        private readonly AuthorRepository _allAuthors;
-        private readonly PublisherRepository _allPublishers;
-        private readonly BookCopyRepository _allBookCopies;
+        private readonly BookRepository _bookRepository;
+        private readonly AuthorRepository _authorRepository;
+        private readonly PublisherRepository _publisherRepository;
+        private readonly BookCopyRepository _bookCopyRepository;
         public AddBookForm()
         {
-            _allBooks = new BookRepository();
-            _allAuthors = new AuthorRepository();
-            _allPublishers = new PublisherRepository();
-            _allBookCopies = new BookCopyRepository();
+            _bookRepository = new BookRepository();
+            _authorRepository = new AuthorRepository();
+            _publisherRepository = new PublisherRepository();
+            _bookCopyRepository = new BookCopyRepository();
             InitializeComponent();
             LoadGenreComboBox();
             LoadAuthorComboBox();
@@ -43,7 +43,7 @@ namespace Library.Presentation.Forms.AddForms
 
         private void LoadAuthorComboBox()
         {
-            foreach (var author in _allAuthors.GetAllAuthors())
+            foreach (var author in _authorRepository.GetAllAuthors())
             {
                 AuthorComboBox.Items.Add($"{author.Name} {author.LastName}");
             }
@@ -51,7 +51,7 @@ namespace Library.Presentation.Forms.AddForms
 
         private void LoadPublisherComboBox()
         {
-            foreach (var publisher in _allPublishers.GetAllPublishers())
+            foreach (var publisher in _publisherRepository.GetAllPublishers())
             {
                 PublisherComboBox.Items.Add($"{publisher.Name}");
             }
@@ -79,17 +79,17 @@ namespace Library.Presentation.Forms.AddForms
                 Name = NameTextBox.Text,
                 PageCount = PageCountTextBox.Text,
                 Genre = (Genre)Enum.Parse(typeof(Genre), GenreComboBox.Text),
-                Author = _allAuthors.GetAllAuthors().FirstOrDefault(author => (author.Name + @" " + author.LastName) == AuthorComboBox.Text),
-                Publisher = _allPublishers.GetAllPublishers().FirstOrDefault(publisher => publisher.Name == PublisherComboBox.Text)
+                Author = _authorRepository.GetAllAuthors().FirstOrDefault(author => (author.Name + @" " + author.LastName) == AuthorComboBox.Text),
+                Publisher = _publisherRepository.GetAllPublishers().FirstOrDefault(publisher => publisher.Name == PublisherComboBox.Text)
             };
 
-            _allBooks.AddBook(toAdd);
+            _bookRepository.AddBook(toAdd);
             
 
             for (var i = 0; i < int.Parse(NumberOfCopiesTextBox.Text); i++)
             {
-                var copyToAdd = new BookCopy(BookStatus.Available, _allBooks.GetAllBooks().FirstOrDefault(book => book.ToString() == toAdd.ToString()));
-                _allBookCopies.AddBookCopy(copyToAdd);
+                var copyToAdd = new BookCopy(BookStatus.Available, _bookRepository.GetAllBooks().FirstOrDefault(book => book.ToString() == toAdd.ToString()));
+                _bookCopyRepository.AddBookCopy(copyToAdd);
             }
 
             Close();

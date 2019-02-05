@@ -118,6 +118,12 @@
     <Compile Include="Forms\ManageForms\ManageStudentsForm.Designer.cs">
       <DependentUpon>ManageStudentsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ReturnBorrowEventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReturnBorrowEventForm.Designer.cs">
+      <DependentUpon>ReturnBorrowEventForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ManageForms\ManageStudentsForm.resx">
       <DependentUpon>ManageStudentsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ReturnBorrowEventForm.resx">
+      <DependentUpon>ReturnBorrowEventForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

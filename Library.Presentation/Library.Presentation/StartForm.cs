@@ -36,5 +36,11 @@ namespace Library.Presentation
             var rent = new AddBorrowEventForm();
             rent.ShowDialog();
         }
+
+        private void RentReturnButton_Click(object sender, EventArgs e)
+        {
+            var returnBorrow = new ReturnBorrowEventForm();
+            returnBorrow.ShowDialog();
+        }
     }
 }

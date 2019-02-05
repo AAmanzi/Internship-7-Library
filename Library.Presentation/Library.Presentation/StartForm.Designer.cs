@@ -32,6 +32,7 @@
             this.TitleLabel = new System.Windows.Forms.Label();
             this.ViewButton = new System.Windows.Forms.Button();
             this.RentButton = new System.Windows.Forms.Button();
+            this.RentReturnButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ManageButton
@@ -45,7 +46,7 @@
             this.ManageButton.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.ManageButton.Location = new System.Drawing.Point(13, 56);
             this.ManageButton.Name = "ManageButton";
-            this.ManageButton.Size = new System.Drawing.Size(175, 69);
+            this.ManageButton.Size = new System.Drawing.Size(191, 69);
             this.ManageButton.TabIndex = 0;
             this.ManageButton.Text = "Manage";
             this.ManageButton.UseVisualStyleBackColor = false;
@@ -56,7 +57,7 @@
             this.TitleLabel.AutoSize = true;
             this.TitleLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TitleLabel.ForeColor = System.Drawing.Color.Gold;
-            this.TitleLabel.Location = new System.Drawing.Point(150, 9);
+            this.TitleLabel.Location = new System.Drawing.Point(161, 9);
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(126, 31);
             this.TitleLabel.TabIndex = 1;
@@ -72,7 +73,7 @@
             this.ViewButton.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.ViewButton.Location = new System.Drawing.Point(239, 56);
             this.ViewButton.Name = "ViewButton";
-            this.ViewButton.Size = new System.Drawing.Size(175, 69);
+            this.ViewButton.Size = new System.Drawing.Size(191, 69);
             this.ViewButton.TabIndex = 2;
             this.ViewButton.Text = "View";
             this.ViewButton.UseVisualStyleBackColor = false;
@@ -87,20 +88,38 @@
             this.RentButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.RentButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RentButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.RentButton.Location = new System.Drawing.Point(122, 142);
+            this.RentButton.Location = new System.Drawing.Point(13, 161);
             this.RentButton.Name = "RentButton";
-            this.RentButton.Size = new System.Drawing.Size(175, 69);
+            this.RentButton.Size = new System.Drawing.Size(191, 69);
             this.RentButton.TabIndex = 3;
             this.RentButton.Text = "Rent a book";
             this.RentButton.UseVisualStyleBackColor = false;
             this.RentButton.Click += new System.EventHandler(this.RentButton_Click);
+            // 
+            // RentReturnButton
+            // 
+            this.RentReturnButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.RentReturnButton.FlatAppearance.BorderColor = System.Drawing.Color.DarkGoldenrod;
+            this.RentReturnButton.FlatAppearance.BorderSize = 0;
+            this.RentReturnButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGoldenrod;
+            this.RentReturnButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
+            this.RentReturnButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RentReturnButton.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.RentReturnButton.Location = new System.Drawing.Point(239, 161);
+            this.RentReturnButton.Name = "RentReturnButton";
+            this.RentReturnButton.Size = new System.Drawing.Size(191, 69);
+            this.RentReturnButton.TabIndex = 4;
+            this.RentReturnButton.Text = "Return a book";
+            this.RentReturnButton.UseVisualStyleBackColor = false;
+            this.RentReturnButton.Click += new System.EventHandler(this.RentReturnButton_Click);
             // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(437, 223);
+            this.ClientSize = new System.Drawing.Size(443, 256);
+            this.Controls.Add(this.RentReturnButton);
             this.Controls.Add(this.RentButton);
             this.Controls.Add(this.ManageButton);
             this.Controls.Add(this.ViewButton);
@@ -119,6 +138,7 @@
         private System.Windows.Forms.Label TitleLabel;
         private System.Windows.Forms.Button ViewButton;
         private System.Windows.Forms.Button RentButton;
+        private System.Windows.Forms.Button RentReturnButton;
     }
 }
 

@@ -14,10 +14,10 @@ namespace Library.Presentation.Forms.AddForms
 {
     public partial class AddAuthorForm : Form
     {
-        private readonly AuthorRepository _allAuthors;
+        private readonly AuthorRepository _authorRepository;
         public AddAuthorForm()
         {
-            _allAuthors = new AuthorRepository();
+            _authorRepository = new AuthorRepository();
             InitializeComponent();
         }
 
@@ -44,7 +44,7 @@ namespace Library.Presentation.Forms.AddForms
                 LastName = LastNameTextBox.Text
             };
 
-            _allAuthors.AddAuthor(toAdd);
+            _authorRepository.AddAuthor(toAdd);
             Close();
         }
 

@@ -29,5 +29,10 @@ namespace Library.Data.Entities.Models
             Student = student;
             BookCopy = bookCopy;
         }
+
+        public override string ToString()
+        {
+            return $"{Student} {BookCopy}";
+        }
     }
 }

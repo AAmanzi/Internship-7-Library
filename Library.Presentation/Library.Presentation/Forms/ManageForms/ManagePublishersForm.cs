@@ -7,7 +7,7 @@ namespace Library.Presentation.Forms.ManageForms
 {
     public partial class ManagePublishersForm : Form
     {
-        private PublisherRepository _allPublishers;
+        private PublisherRepository _publisherRepository;
         public ManagePublishersForm()
         {
             InitializeComponent();
@@ -16,9 +16,9 @@ namespace Library.Presentation.Forms.ManageForms
 
         private void RefreshPublishersListBox()
         {
-            _allPublishers = new PublisherRepository();
+            _publisherRepository = new PublisherRepository();
             PublishersListBox.Items.Clear();
-            foreach (var book in _allPublishers.GetAllPublishers())
+            foreach (var book in _publisherRepository.GetAllPublishers())
             {
                 PublishersListBox.Items.Add(book);
             }
