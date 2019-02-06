@@ -34,6 +34,9 @@
             this.AddButton = new System.Windows.Forms.Button();
             this.BooksListBox = new System.Windows.Forms.CheckedListBox();
             this.BookInfoListBox = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.NumberOfCopiesTextBox = new System.Windows.Forms.TextBox();
+            this.AddCopiesButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TitleLabel
@@ -41,7 +44,7 @@
             this.TitleLabel.AutoSize = true;
             this.TitleLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TitleLabel.ForeColor = System.Drawing.Color.Gold;
-            this.TitleLabel.Location = new System.Drawing.Point(267, 9);
+            this.TitleLabel.Location = new System.Drawing.Point(360, 9);
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(206, 31);
             this.TitleLabel.TabIndex = 7;
@@ -56,7 +59,7 @@
             this.DeleteButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.DeleteButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DeleteButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.DeleteButton.Location = new System.Drawing.Point(785, 288);
+            this.DeleteButton.Location = new System.Drawing.Point(842, 338);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(175, 69);
             this.DeleteButton.TabIndex = 8;
@@ -72,7 +75,7 @@
             this.EditButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.EditButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.EditButton.Location = new System.Drawing.Point(785, 196);
+            this.EditButton.Location = new System.Drawing.Point(842, 223);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(175, 69);
             this.EditButton.TabIndex = 9;
@@ -88,7 +91,7 @@
             this.AddButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.AddButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.AddButton.Location = new System.Drawing.Point(785, 103);
+            this.AddButton.Location = new System.Drawing.Point(842, 103);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(175, 69);
             this.AddButton.TabIndex = 10;
@@ -103,7 +106,7 @@
             this.BooksListBox.FormattingEnabled = true;
             this.BooksListBox.Location = new System.Drawing.Point(24, 103);
             this.BooksListBox.Name = "BooksListBox";
-            this.BooksListBox.Size = new System.Drawing.Size(423, 254);
+            this.BooksListBox.Size = new System.Drawing.Size(423, 304);
             this.BooksListBox.TabIndex = 11;
             this.BooksListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.BooksListBox_ItemCheck);
             // 
@@ -112,16 +115,56 @@
             this.BookInfoListBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BookInfoListBox.FormattingEnabled = true;
             this.BookInfoListBox.ItemHeight = 23;
-            this.BookInfoListBox.Location = new System.Drawing.Point(507, 146);
+            this.BookInfoListBox.Location = new System.Drawing.Point(470, 169);
             this.BookInfoListBox.Name = "BookInfoListBox";
-            this.BookInfoListBox.Size = new System.Drawing.Size(232, 211);
+            this.BookInfoListBox.Size = new System.Drawing.Size(294, 96);
             this.BookInfoListBox.TabIndex = 17;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Lucida Sans Typewriter", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.label1.Location = new System.Drawing.Point(541, 103);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(158, 31);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Book info";
+            // 
+            // NumberOfCopiesTextBox
+            // 
+            this.NumberOfCopiesTextBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NumberOfCopiesTextBox.Location = new System.Drawing.Point(668, 372);
+            this.NumberOfCopiesTextBox.Name = "NumberOfCopiesTextBox";
+            this.NumberOfCopiesTextBox.Size = new System.Drawing.Size(96, 31);
+            this.NumberOfCopiesTextBox.TabIndex = 35;
+            // 
+            // AddCopiesButton
+            // 
+            this.AddCopiesButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.AddCopiesButton.FlatAppearance.BorderColor = System.Drawing.Color.DarkGoldenrod;
+            this.AddCopiesButton.FlatAppearance.BorderSize = 0;
+            this.AddCopiesButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGoldenrod;
+            this.AddCopiesButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
+            this.AddCopiesButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddCopiesButton.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.AddCopiesButton.Location = new System.Drawing.Point(470, 366);
+            this.AddCopiesButton.Name = "AddCopiesButton";
+            this.AddCopiesButton.Size = new System.Drawing.Size(174, 41);
+            this.AddCopiesButton.TabIndex = 37;
+            this.AddCopiesButton.Text = "Add copies";
+            this.AddCopiesButton.UseVisualStyleBackColor = false;
+            this.AddCopiesButton.Click += new System.EventHandler(this.AddCopiesButton_Click);
             // 
             // ManageBooksForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(998, 450);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ClientSize = new System.Drawing.Size(1046, 450);
+            this.Controls.Add(this.AddCopiesButton);
+            this.Controls.Add(this.NumberOfCopiesTextBox);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.BookInfoListBox);
             this.Controls.Add(this.BooksListBox);
             this.Controls.Add(this.AddButton);
@@ -143,5 +186,8 @@
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.CheckedListBox BooksListBox;
         private System.Windows.Forms.ListBox BookInfoListBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox NumberOfCopiesTextBox;
+        private System.Windows.Forms.Button AddCopiesButton;
     }
 }

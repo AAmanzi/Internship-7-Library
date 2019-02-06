@@ -66,7 +66,7 @@ namespace Library.Domain.Repositories
         {
             var eventToReturn = GetAllBorrowEvents().First(borrowEvent =>
                 borrowEvent.Student.ToString() == toReturn.Student.ToString() &&
-                borrowEvent.BookCopy.Book.ToString() == toReturn.BookCopy.Book.ToString());
+                borrowEvent.BookCopy.Book.ToString() == toReturn.BookCopy.Book.ToString() && borrowEvent.DateOfReturn == null);
 
             if (eventToReturn == null)
                 return false;

@@ -27,9 +27,9 @@ namespace Library.Domain.Repositories
                     .ThenInclude(book => book.Publisher).ToList();
         }
 
-        public BookCopy GetBookCopy(int toGetId)
+        public ICollection<BookCopy> GetBookCopiesByBook(string bookToGet)
         {
-            return _context.BookCopies.Find(toGetId);
+            return GetAllBookCopies().Where(bookCopy => bookCopy.Book.ToString() == bookToGet).ToList();
         }
 
         public void AddBookCopy(BookCopy toAdd)
@@ -39,6 +39,7 @@ namespace Library.Domain.Repositories
             _context.SaveChanges();
         }
 
+        /*
         public bool TryDelete(int toDeleteId)
         {
             var toDelete = GetBookCopy(toDeleteId);
@@ -62,5 +63,6 @@ namespace Library.Domain.Repositories
             _context.SaveChanges();
             return true;
         }
+        */
     }
 }

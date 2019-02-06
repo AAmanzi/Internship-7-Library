@@ -34,6 +34,7 @@
             this.TitleLabel = new System.Windows.Forms.Label();
             this.AuthorsListBox = new System.Windows.Forms.CheckedListBox();
             this.AuthorInfoListBox = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // AddButton
@@ -112,16 +113,29 @@
             this.AuthorInfoListBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AuthorInfoListBox.FormattingEnabled = true;
             this.AuthorInfoListBox.ItemHeight = 23;
-            this.AuthorInfoListBox.Location = new System.Drawing.Point(364, 152);
+            this.AuthorInfoListBox.Location = new System.Drawing.Point(362, 152);
             this.AuthorInfoListBox.Name = "AuthorInfoListBox";
             this.AuthorInfoListBox.Size = new System.Drawing.Size(232, 211);
             this.AuthorInfoListBox.TabIndex = 16;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Lucida Sans Typewriter", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Silver;
+            this.label1.Location = new System.Drawing.Point(436, 116);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 31);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Books";
             // 
             // ManageAuthorsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(874, 450);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.AuthorInfoListBox);
             this.Controls.Add(this.AuthorsListBox);
             this.Controls.Add(this.TitleLabel);
@@ -143,5 +157,6 @@
         private System.Windows.Forms.Label TitleLabel;
         private System.Windows.Forms.CheckedListBox AuthorsListBox;
         private System.Windows.Forms.ListBox AuthorInfoListBox;
+        private System.Windows.Forms.Label label1;
     }
 }

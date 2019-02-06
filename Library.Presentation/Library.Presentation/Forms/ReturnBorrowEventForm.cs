@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Library.Data.Entities.Models;
+using Library.Data.Enums;
 using Library.Domain.Repositories;
 
 namespace Library.Presentation.Forms
@@ -15,7 +16,7 @@ namespace Library.Presentation.Forms
     public partial class ReturnBorrowEventForm : Form
     {
         private readonly StudentRepository _studentRepository;
-        private readonly BorrowEventRepository _borrowEventRepository;
+        private BorrowEventRepository _borrowEventRepository;
         public ReturnBorrowEventForm()
         {
             _studentRepository = new StudentRepository();
@@ -39,6 +40,7 @@ namespace Library.Presentation.Forms
 
         private void RefreshStudentRentInfo()
         {
+            _borrowEventRepository = new BorrowEventRepository();
             DateOfRentTextBox.Text = "";
             BooksListBox.Items.Clear();
             var studentBorrowEvents = _borrowEventRepository.GetBorrowEventsByStudent(StudentComboBox.Text);
@@ -57,10 +59,13 @@ namespace Library.Presentation.Forms
 
         private void RefreshDateOfBorrowTextBox()
         {
+            _borrowEventRepository = new BorrowEventRepository();
             var selected = BooksListBox.SelectedItem.ToString();
-            var checkedBorrowEvent = _borrowEventRepository.GetAllBorrowEvents().FirstOrDefault(borrowEvent =>
+            var test = _borrowEventRepository.GetAllBorrowEvents().ToList();
+
+            var checkedBorrowEvent = test.FirstOrDefault(borrowEvent =>
                 borrowEvent.Student.ToString() == StudentComboBox.Text &&
-                borrowEvent.BookCopy.Book.ToString() == selected);
+                borrowEvent.BookCopy.Book.ToString() == selected && borrowEvent.DateOfReturn == null);
             DateOfRentTextBox.Text = $"{checkedBorrowEvent.DateOfBorrow :dd MMMM yyyy}";
         }
 
@@ -75,9 +80,10 @@ namespace Library.Presentation.Forms
             var selected = BooksListBox.SelectedItem.ToString();
             var checkedBorrowEvent = _borrowEventRepository.GetAllBorrowEvents().FirstOrDefault(borrowEvent =>
                 borrowEvent.Student.ToString() == StudentComboBox.Text &&
-                borrowEvent.BookCopy.Book.ToString() == selected);
+                borrowEvent.BookCopy.Book.ToString() == selected && borrowEvent.DateOfReturn == null);
 
             _borrowEventRepository.ReturnBookEvent(checkedBorrowEvent, DateOfReturnPicker.Value);
+            RefreshStudentRentInfo();
         }
 
         private bool CheckForErrors()

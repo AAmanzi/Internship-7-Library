@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using Library.Data.Entities.Models;
+using Library.Data.Enums;
 using Library.Domain.Repositories;
 using Library.Presentation.Forms.AddForms;
 
@@ -9,6 +11,7 @@ namespace Library.Presentation.Forms.ManageForms
     public partial class ManageBooksForm : Form
     {
         private BookRepository _bookRepository;
+        private BookCopyRepository _bookCopyRepository;
         public ManageBooksForm()
         {
             InitializeComponent();
@@ -18,6 +21,7 @@ namespace Library.Presentation.Forms.ManageForms
         private void RefreshBooksListBox()
         {
             _bookRepository = new BookRepository();
+            _bookCopyRepository = new BookCopyRepository();
             BooksListBox.Items.Clear();
             foreach (var book in _bookRepository.GetAllBooks().OrderBy(book => book.Name).ThenBy(book => book.Publisher))
             {
@@ -51,6 +55,36 @@ namespace Library.Presentation.Forms.ManageForms
                 return;
             BookInfoListBox.Items.Add($"{checkedBook.PageCount} pages");
             BookInfoListBox.Items.Add($"Genre: {checkedBook.Genre}");
+
+            var bookCopies = _bookCopyRepository.GetBookCopiesByBook(selected);
+
+            BookInfoListBox.Items.Add($"Number of copies: {bookCopies.Count}");
+        }
+
+        private void AddCopiesButton_Click(object sender, EventArgs e)
+        {
+            if (BooksListBox.CheckedItems.Count == 0)
+            {
+                var selectError = new ErrorForm("You must select a book to add copies!");
+                selectError.ShowDialog();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(NumberOfCopiesTextBox.Text))
+                return;
+
+            var selected = BooksListBox.SelectedItem.ToString();
+            var checkedBook = _bookRepository.GetAllBooks().FirstOrDefault(book => book.ToString() == selected);
+
+            for (var i = 0; i < int.Parse(NumberOfCopiesTextBox.Text); i++)
+            {
+                var copyToAdd = new BookCopy(BookStatus.Available,
+                    _bookRepository.GetAllBooks().FirstOrDefault(book => book.ToString() == checkedBook.ToString()));
+                _bookCopyRepository.AddBookCopy(copyToAdd);
+            }
+
+            NumberOfCopiesTextBox.Text = "";
+            RefreshBookInfoListBox();
         }
     }
 }
