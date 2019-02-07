@@ -15,7 +15,6 @@ namespace Library.Data.Entities.Models
         public string Name { get; set; }
         public string PageCount { get; set; }
         public Genre Genre { get; set; }
-        public int AvailableCopies { get; set; }
 
         public Author Author { get; set; }
         public Publisher Publisher { get; set; }
@@ -26,12 +25,11 @@ namespace Library.Data.Entities.Models
             
         }
 
-        public Book(string name, string pageCount, Genre genre, int copies, Author author, Publisher publisher)
+        public Book(string name, string pageCount, Genre genre, Author author, Publisher publisher)
         {
             Name = name;
             PageCount = pageCount;
             Genre = genre;
-            AvailableCopies = copies;
             Author = author;
             Publisher = publisher;
         }

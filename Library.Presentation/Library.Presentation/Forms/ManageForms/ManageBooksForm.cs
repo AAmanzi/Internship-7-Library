@@ -59,6 +59,8 @@ namespace Library.Presentation.Forms.ManageForms
             var bookCopies = _bookCopyRepository.GetBookCopiesByBook(selected);
 
             BookInfoListBox.Items.Add($"Number of copies: {bookCopies.Count}");
+            BookInfoListBox.Items.Add(
+                $"Available copies: {bookCopies.Count(bookCopy => bookCopy.Status == BookStatus.Available)}");
         }
 
         private void AddCopiesButton_Click(object sender, EventArgs e)
@@ -70,21 +72,111 @@ namespace Library.Presentation.Forms.ManageForms
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(NumberOfCopiesTextBox.Text))
+            if (string.IsNullOrWhiteSpace(NumberOfCopiesToAddTextBox.Text))
                 return;
 
             var selected = BooksListBox.SelectedItem.ToString();
-            var checkedBook = _bookRepository.GetAllBooks().FirstOrDefault(book => book.ToString() == selected);
+            var checkedBook = _bookRepository.GetAllBooks().First(book => book.ToString() == selected);
 
-            for (var i = 0; i < int.Parse(NumberOfCopiesTextBox.Text); i++)
+            for (var i = 0; i < int.Parse(NumberOfCopiesToAddTextBox.Text); i++)
             {
                 var copyToAdd = new BookCopy(BookStatus.Available,
                     _bookRepository.GetAllBooks().FirstOrDefault(book => book.ToString() == checkedBook.ToString()));
                 _bookCopyRepository.AddBookCopy(copyToAdd);
             }
 
-            NumberOfCopiesTextBox.Text = "";
+            NumberOfCopiesToAddTextBox.Text = "";
             RefreshBookInfoListBox();
+        }
+
+        private void DeleteCopiesButton_Click(object sender, EventArgs e)
+        {
+            if (BooksListBox.CheckedItems.Count == 0)
+            {
+                var selectError = new ErrorForm("You must select a book to delete copies!");
+                selectError.ShowDialog();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(NumberOfCopiesToDeleteTextBox.Text))
+                return;
+
+            var selected = BooksListBox.SelectedItem.ToString();
+            var deletedAllAvailableCopies = false;
+
+
+            for (var i = 0; i < int.Parse(NumberOfCopiesToDeleteTextBox.Text); i++)
+            {
+                var copyToDelete = _bookCopyRepository.GetAllBookCopies().FirstOrDefault(bookCopy =>
+                    bookCopy.Book.ToString() == selected && bookCopy.Status == BookStatus.Available);
+
+                if (copyToDelete == null)
+                {
+                    deletedAllAvailableCopies = true;
+                    break;
+                }
+                _bookCopyRepository.TryDelete(copyToDelete);
+            }
+
+            if (_bookCopyRepository.GetAllBookCopies().FirstOrDefault(bookCopy => bookCopy.Book.ToString() == selected) == null)
+            {
+                _bookRepository = new BookRepository();
+                _bookCopyRepository = new BookCopyRepository();
+                var checkedBook = _bookRepository.GetAllBooks()
+                    .FirstOrDefault(book => book.ToString() == selected);
+
+                _bookRepository.TryDelete(checkedBook);
+            }
+            else if (deletedAllAvailableCopies)
+            {
+                var borrowedError = new ErrorForm("Borrowed copies cannot be deleted until returned!");
+                borrowedError.ShowDialog();
+            }
+
+            NumberOfCopiesToDeleteTextBox.Text = "";
+            RefreshBookInfoListBox();
+            RefreshBooksListBox();
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (!IsSafeToDelete())
+                return;
+
+            var selected = BooksListBox.SelectedItem.ToString();
+            var bookCopies = _bookCopyRepository.GetBookCopiesByBook(selected);
+
+            foreach (var bookCopy in bookCopies)
+            {
+                _bookCopyRepository.TryDelete(bookCopy);
+            }
+            _bookRepository = new BookRepository();
+            _bookCopyRepository = new BookCopyRepository();
+
+            var checkedBook = _bookRepository.GetAllBooks()
+                .FirstOrDefault(book => book.ToString() == selected);
+            _bookRepository.TryDelete(checkedBook);
+            RefreshBooksListBox();
+            BookInfoListBox.Items.Clear();
+        }
+
+        private bool IsSafeToDelete()
+        {
+            if (BooksListBox.SelectedItem == null)
+                return false;
+
+            var selected = BooksListBox.SelectedItem.ToString();
+            var bookCopies = _bookCopyRepository.GetBookCopiesByBook(selected);
+            if (bookCopies.Count != bookCopies.Count(bookCopy => bookCopy.Status == BookStatus.Available))
+            {
+                var copyError = new ErrorForm("You cannot delete a book that has borrowed copies");
+                copyError.ShowDialog();
+                return false;
+            }
+
+            var confirmCancel = new ConfirmForm();
+            confirmCancel.ShowDialog();
+            return confirmCancel.IsConfirmed;
         }
     }
 }

@@ -33,6 +33,8 @@
             this.AddButton = new System.Windows.Forms.Button();
             this.EditButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.PublisherInfoListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // PublishersListBox
@@ -66,7 +68,7 @@
             this.AddButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.AddButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.AddButton.Location = new System.Drawing.Point(381, 80);
+            this.AddButton.Location = new System.Drawing.Point(612, 80);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(232, 69);
             this.AddButton.TabIndex = 18;
@@ -83,7 +85,7 @@
             this.EditButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.EditButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.EditButton.Location = new System.Drawing.Point(381, 168);
+            this.EditButton.Location = new System.Drawing.Point(612, 173);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(232, 69);
             this.EditButton.TabIndex = 17;
@@ -99,18 +101,42 @@
             this.DeleteButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.DeleteButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DeleteButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.DeleteButton.Location = new System.Drawing.Point(381, 259);
+            this.DeleteButton.Location = new System.Drawing.Point(612, 265);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(232, 69);
             this.DeleteButton.TabIndex = 16;
             this.DeleteButton.Text = "Delete publisher";
             this.DeleteButton.UseVisualStyleBackColor = false;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Lucida Sans Typewriter", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Silver;
+            this.label1.Location = new System.Drawing.Point(435, 87);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 31);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Books";
+            // 
+            // PublisherInfoListBox
+            // 
+            this.PublisherInfoListBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PublisherInfoListBox.FormattingEnabled = true;
+            this.PublisherInfoListBox.ItemHeight = 23;
+            this.PublisherInfoListBox.Location = new System.Drawing.Point(361, 123);
+            this.PublisherInfoListBox.Name = "PublisherInfoListBox";
+            this.PublisherInfoListBox.Size = new System.Drawing.Size(232, 211);
+            this.PublisherInfoListBox.TabIndex = 21;
             // 
             // ManagePublishersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(648, 363);
+            this.ClientSize = new System.Drawing.Size(936, 363);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.PublisherInfoListBox);
             this.Controls.Add(this.PublishersListBox);
             this.Controls.Add(this.TitleLabel);
             this.Controls.Add(this.AddButton);
@@ -130,5 +156,7 @@
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.Button EditButton;
         private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox PublisherInfoListBox;
     }
 }

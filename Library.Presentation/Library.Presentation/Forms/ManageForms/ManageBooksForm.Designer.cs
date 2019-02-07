@@ -35,8 +35,10 @@
             this.BooksListBox = new System.Windows.Forms.CheckedListBox();
             this.BookInfoListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.NumberOfCopiesTextBox = new System.Windows.Forms.TextBox();
+            this.NumberOfCopiesToAddTextBox = new System.Windows.Forms.TextBox();
             this.AddCopiesButton = new System.Windows.Forms.Button();
+            this.DeleteCopiesButton = new System.Windows.Forms.Button();
+            this.NumberOfCopiesToDeleteTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // TitleLabel
@@ -65,6 +67,7 @@
             this.DeleteButton.TabIndex = 8;
             this.DeleteButton.Text = "Delete book";
             this.DeleteButton.UseVisualStyleBackColor = false;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // EditButton
             // 
@@ -131,13 +134,13 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Book info";
             // 
-            // NumberOfCopiesTextBox
+            // NumberOfCopiesToAddTextBox
             // 
-            this.NumberOfCopiesTextBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumberOfCopiesTextBox.Location = new System.Drawing.Point(668, 372);
-            this.NumberOfCopiesTextBox.Name = "NumberOfCopiesTextBox";
-            this.NumberOfCopiesTextBox.Size = new System.Drawing.Size(96, 31);
-            this.NumberOfCopiesTextBox.TabIndex = 35;
+            this.NumberOfCopiesToAddTextBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NumberOfCopiesToAddTextBox.Location = new System.Drawing.Point(668, 309);
+            this.NumberOfCopiesToAddTextBox.Name = "NumberOfCopiesToAddTextBox";
+            this.NumberOfCopiesToAddTextBox.Size = new System.Drawing.Size(96, 31);
+            this.NumberOfCopiesToAddTextBox.TabIndex = 35;
             // 
             // AddCopiesButton
             // 
@@ -148,13 +151,38 @@
             this.AddCopiesButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.AddCopiesButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddCopiesButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.AddCopiesButton.Location = new System.Drawing.Point(470, 366);
+            this.AddCopiesButton.Location = new System.Drawing.Point(470, 303);
             this.AddCopiesButton.Name = "AddCopiesButton";
-            this.AddCopiesButton.Size = new System.Drawing.Size(174, 41);
+            this.AddCopiesButton.Size = new System.Drawing.Size(192, 41);
             this.AddCopiesButton.TabIndex = 37;
             this.AddCopiesButton.Text = "Add copies";
             this.AddCopiesButton.UseVisualStyleBackColor = false;
             this.AddCopiesButton.Click += new System.EventHandler(this.AddCopiesButton_Click);
+            // 
+            // DeleteCopiesButton
+            // 
+            this.DeleteCopiesButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.DeleteCopiesButton.FlatAppearance.BorderColor = System.Drawing.Color.DarkGoldenrod;
+            this.DeleteCopiesButton.FlatAppearance.BorderSize = 0;
+            this.DeleteCopiesButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGoldenrod;
+            this.DeleteCopiesButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
+            this.DeleteCopiesButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteCopiesButton.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.DeleteCopiesButton.Location = new System.Drawing.Point(470, 366);
+            this.DeleteCopiesButton.Name = "DeleteCopiesButton";
+            this.DeleteCopiesButton.Size = new System.Drawing.Size(192, 41);
+            this.DeleteCopiesButton.TabIndex = 39;
+            this.DeleteCopiesButton.Text = "Delete copies";
+            this.DeleteCopiesButton.UseVisualStyleBackColor = false;
+            this.DeleteCopiesButton.Click += new System.EventHandler(this.DeleteCopiesButton_Click);
+            // 
+            // NumberOfCopiesToDeleteTextBox
+            // 
+            this.NumberOfCopiesToDeleteTextBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NumberOfCopiesToDeleteTextBox.Location = new System.Drawing.Point(668, 372);
+            this.NumberOfCopiesToDeleteTextBox.Name = "NumberOfCopiesToDeleteTextBox";
+            this.NumberOfCopiesToDeleteTextBox.Size = new System.Drawing.Size(96, 31);
+            this.NumberOfCopiesToDeleteTextBox.TabIndex = 38;
             // 
             // ManageBooksForm
             // 
@@ -162,8 +190,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1046, 450);
+            this.Controls.Add(this.DeleteCopiesButton);
+            this.Controls.Add(this.NumberOfCopiesToDeleteTextBox);
             this.Controls.Add(this.AddCopiesButton);
-            this.Controls.Add(this.NumberOfCopiesTextBox);
+            this.Controls.Add(this.NumberOfCopiesToAddTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BookInfoListBox);
             this.Controls.Add(this.BooksListBox);
@@ -187,7 +217,9 @@
         private System.Windows.Forms.CheckedListBox BooksListBox;
         private System.Windows.Forms.ListBox BookInfoListBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox NumberOfCopiesTextBox;
+        private System.Windows.Forms.TextBox NumberOfCopiesToAddTextBox;
         private System.Windows.Forms.Button AddCopiesButton;
+        private System.Windows.Forms.Button DeleteCopiesButton;
+        private System.Windows.Forms.TextBox NumberOfCopiesToDeleteTextBox;
     }
 }

@@ -28,14 +28,10 @@ namespace Library.Domain.Repositories
 
         public ICollection<BorrowEvent> GetBorrowEventsByStudent(string toGetStudentString)
         {
-            return _context.BorrowEvents.Include(be => be.BookCopy).ThenInclude(bc => bc.Book)
-                .ThenInclude(bk => bk.Author).Include(be => be.BookCopy).ThenInclude(bc => bc.Book)
-                .ThenInclude(bk => bk.Publisher).Where(borrowEvent => borrowEvent.Student.StudentId ==
-                                                                      _context.Students.FirstOrDefault(student =>
-                                                                              student.ToString() == toGetStudentString)
-                                                                          .StudentId &&
-                                                                      borrowEvent.DateOfReturn == null)
-                .ToList();
+            return GetAllBorrowEvents().Where(borrowEvent => borrowEvent.Student ==
+                                                             _context.Students.FirstOrDefault(student =>
+                                                                 student.ToString() == toGetStudentString) &&
+                                                             borrowEvent.DateOfReturn == null).ToList();
         }
 
         public BorrowEvent GetBorrowEvent(int toGetId)
@@ -51,7 +47,7 @@ namespace Library.Domain.Repositories
             _context.BorrowEvents.Add(tmpBorrowEvent);
             _context.SaveChanges();
         }
-
+        /*
         public bool TryDelete(int toDeleteId)
         {
             var toDelete = GetBorrowEvent(toDeleteId);
@@ -61,6 +57,7 @@ namespace Library.Domain.Repositories
             _context.SaveChanges();
             return true;
         }
+        */
 
         public bool ReturnBookEvent(BorrowEvent toReturn, DateTime dateOfReturn)
         {

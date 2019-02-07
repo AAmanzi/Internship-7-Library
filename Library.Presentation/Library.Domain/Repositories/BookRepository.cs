@@ -30,6 +30,11 @@ namespace Library.Domain.Repositories
             return _context.Books.Where(book => book.Author == toGet).ToList();
         }
 
+        public ICollection<Book> GetBooksByPublisher(Publisher toGet)
+        {
+            return _context.Books.Where(book => book.Publisher == toGet).ToList();
+        }
+
         public bool IsBookAvailable(Book toCheck)
         {
             var bookToCheck = _context.Books.FirstOrDefault(book => book.ToString() == toCheck.ToString());
@@ -43,11 +48,6 @@ namespace Library.Domain.Repositories
             return _context.Books.Where(book => IsBookAvailable(book)).ToList();
         }
 
-        public ICollection<Book> GetBooksByPublisher(Publisher toGet)
-        {
-            return _context.Books.Where(book => book.Publisher == toGet).ToList();
-        }
-
         public Book GetBook(int toGetId)
         {
             return _context.Books.Find(toGetId);
@@ -55,20 +55,17 @@ namespace Library.Domain.Repositories
 
         public void AddBook(Book toAdd)
         {
-            var tmpBook = new Book(toAdd.Name, toAdd.PageCount, toAdd.Genre, toAdd.AvailableCopies,
+            var tmpBook = new Book(toAdd.Name, toAdd.PageCount, toAdd.Genre,
                 _context.Authors.Find(toAdd.Author.AuthorId), _context.Publishers.Find(toAdd.Publisher.PublisherId));
             _context.Books.Add(tmpBook);
             _context.SaveChanges();
         }
 
-        public bool TryDelete(int toDeleteId)
+        public bool TryDelete(Book toDelete)
         {
-            var toDelete = GetBook(toDeleteId);
-            if (toDelete == null)
-                return false;
             _context.Books.Remove(toDelete);
-            _context.SaveChanges();
-            return true;
+            var numberOfChanges = _context.SaveChanges();
+            return numberOfChanges != 0;
         }
 
         public bool TryUpdate(int bookToUpdateId, Book updated)
@@ -81,7 +78,6 @@ namespace Library.Domain.Repositories
             toUpdate.Name = updated.Name;
             toUpdate.PageCount = updated.PageCount;
             toUpdate.Genre = updated.Genre;
-            toUpdate.AvailableCopies = updated.AvailableCopies;
             toUpdate.Author = updated.Author;
             toUpdate.Publisher = updated.Publisher;
 

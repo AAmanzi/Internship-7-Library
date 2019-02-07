@@ -56,5 +56,39 @@ namespace Library.Presentation.Forms.ManageForms
                 AuthorInfoListBox.Items.Add(book.Name);
             }
         }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (!IsSafeToDelete())
+                return;
+
+            var selected = AuthorsListBox.SelectedItem.ToString();
+            var checkedAuthor = _authorRepository.GetAllAuthors()
+                .FirstOrDefault(author => author.ToString() == selected);
+
+            _authorRepository.TryDelete(checkedAuthor);
+            RefreshAuthorsListBox();
+        }
+
+        private bool IsSafeToDelete()
+        {
+            if (AuthorsListBox.SelectedItem == null)
+                return false;
+
+            var selected = AuthorsListBox.SelectedItem.ToString();
+            var checkedAuthor = _authorRepository.GetAllAuthors()
+                .FirstOrDefault(author => author.ToString() == selected);
+
+            if (_bookRepository.GetBooksByAuthor(checkedAuthor).Count != 0)
+            {
+                var bookError = new ErrorForm("You must first delete the author's books before deleting him/her");
+                bookError.ShowDialog();
+                return false;
+            }
+
+            var confirmCancel = new ConfirmForm();
+            confirmCancel.ShowDialog();
+            return confirmCancel.IsConfirmed;
+        }
     }
 }

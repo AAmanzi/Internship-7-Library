@@ -149,6 +149,10 @@
     <Compile Include="Migrations\20190203235639_AddedTableBookCopy.designer.cs">
       <DependentUpon>20190203235639_AddedTableBookCopy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20190207231417_RemovedAvailableCopiesFromBooks.cs" />
+    <Compile Include="Migrations\20190207231417_RemovedAvailableCopiesFromBooks.designer.cs">
+      <DependentUpon>20190207231417_RemovedAvailableCopiesFromBooks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\LibraryContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

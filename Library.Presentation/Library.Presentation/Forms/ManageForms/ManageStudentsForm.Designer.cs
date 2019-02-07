@@ -106,6 +106,7 @@
             this.DeleteButton.TabIndex = 16;
             this.DeleteButton.Text = "Delete student";
             this.DeleteButton.UseVisualStyleBackColor = false;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // StudentInfoListBox
             // 

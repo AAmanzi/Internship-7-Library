@@ -33,14 +33,11 @@ namespace Library.Domain.Repositories
             _context.SaveChanges();
         }
 
-        public bool TryDelete(int toDeleteId)
+        public bool TryDelete(Publisher toDelete)
         {
-            var toDelete = GetPublisher(toDeleteId);
-            if (toDelete == null)
-                return false;
             _context.Publishers.Remove(toDelete);
-            _context.SaveChanges();
-            return true;
+            var numberOfChanges = _context.SaveChanges();
+            return numberOfChanges != 0;
         }
 
         public bool TryUpdate(int publisherToUpdateId, Publisher updated)

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Library.Data.Entities;
 using Library.Data.Entities.Models;
+using Library.Data.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace Library.Domain.Repositories
@@ -39,17 +40,14 @@ namespace Library.Domain.Repositories
             _context.SaveChanges();
         }
 
-        /*
-        public bool TryDelete(int toDeleteId)
+        public bool TryDelete(BookCopy toDelete)
         {
-            var toDelete = GetBookCopy(toDeleteId);
-            if (toDelete == null)
-                return false;
             _context.BookCopies.Remove(toDelete);
-            _context.SaveChanges();
-            return true;
+            var numberOfChanges = _context.SaveChanges();
+            return numberOfChanges != 0;
         }
-
+        
+        /*
         public bool TryUpdate(int bookCopyToUpdateId, BookCopy updated)
         {
             var toUpdate = GetBookCopy(bookCopyToUpdateId);
