@@ -40,22 +40,21 @@ namespace Library.Domain.Repositories
             return numberOfChanges != 0;
         }
 
-        public bool TryUpdate(int studentToUpdateId, Student updated)
+        public bool TryUpdate(Student toUpdate, Student updated)
         {
-            var toUpdate = GetStudent(studentToUpdateId);
+            var tmpToUpdate = GetAllStudents().FirstOrDefault(student => student.ToString() == toUpdate.ToString());
 
-            if (toUpdate == null)
+            if (tmpToUpdate == null)
                 return false;
             
-            toUpdate.Sex = updated.Sex;
-            toUpdate.Name = updated.Name;
-            toUpdate.LastName = updated.LastName;
-            toUpdate.DateOfBirth = updated.DateOfBirth;
-            toUpdate.SchoolClass = updated.SchoolClass;
-            toUpdate.BorrowEvents = updated.BorrowEvents;
+            tmpToUpdate.Sex = updated.Sex;
+            tmpToUpdate.Name = updated.Name;
+            tmpToUpdate.LastName = updated.LastName;
+            tmpToUpdate.DateOfBirth = updated.DateOfBirth;
+            tmpToUpdate.SchoolClass = updated.SchoolClass;
 
-            _context.SaveChanges();
-            return true;
+            var numberOfChanges = _context.SaveChanges();
+            return numberOfChanges != 0;
         }
     }
 }

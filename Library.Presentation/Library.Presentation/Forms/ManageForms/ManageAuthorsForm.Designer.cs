@@ -69,6 +69,7 @@
             this.EditButton.TabIndex = 12;
             this.EditButton.Text = "Edit author";
             this.EditButton.UseVisualStyleBackColor = false;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // DeleteButton
             // 

@@ -13,6 +13,11 @@ namespace Library.Data.Entities.Models
 
         public ICollection<Book> Books { get; set; }
 
+        public Publisher(string name)
+        {
+            Name = name;
+        }
+
         public override string ToString()
         {
             return Name;

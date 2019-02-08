@@ -34,11 +34,6 @@ namespace Library.Domain.Repositories
                                                              borrowEvent.DateOfReturn == null).ToList();
         }
 
-        public BorrowEvent GetBorrowEvent(int toGetId)
-        {
-            return _context.BorrowEvents.Find(toGetId);
-        }
-
         public void AddBorrowEvent(BorrowEvent toAdd)
         {
             _context.BookCopies.Find(toAdd.BookCopy.BookCopyId).Status = BookStatus.Borrowed;
@@ -47,17 +42,6 @@ namespace Library.Domain.Repositories
             _context.BorrowEvents.Add(tmpBorrowEvent);
             _context.SaveChanges();
         }
-        /*
-        public bool TryDelete(int toDeleteId)
-        {
-            var toDelete = GetBorrowEvent(toDeleteId);
-            if (toDelete == null)
-                return false;
-            _context.BorrowEvents.Remove(toDelete);
-            _context.SaveChanges();
-            return true;
-        }
-        */
 
         public bool ReturnBookEvent(BorrowEvent toReturn, DateTime dateOfReturn)
         {

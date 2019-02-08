@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Library.Domain.Repositories;
 using Library.Presentation.Forms.AddForms;
+using Library.Presentation.Forms.EditForms;
 
 namespace Library.Presentation.Forms.ManageForms
 {
@@ -99,6 +100,19 @@ namespace Library.Presentation.Forms.ManageForms
             var confirmCancel = new ConfirmForm();
             confirmCancel.ShowDialog();
             return confirmCancel.IsConfirmed;
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            if (StudentsListBox.CheckedItems.Count == 0)
+                return;
+
+            var selected = StudentsListBox.SelectedItem.ToString();
+
+            var editSelectedStudent = new EditStudentForm(selected);
+            editSelectedStudent.ShowDialog();
+            RefreshStudentsListBox();
+            StudentInfoListBox.Items.Clear();
         }
     }
 }

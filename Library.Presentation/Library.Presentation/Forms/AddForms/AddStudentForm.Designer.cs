@@ -48,7 +48,7 @@
             this.TitleLabel.AutoSize = true;
             this.TitleLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TitleLabel.ForeColor = System.Drawing.Color.Gold;
-            this.TitleLabel.Location = new System.Drawing.Point(289, 23);
+            this.TitleLabel.Location = new System.Drawing.Point(289, 9);
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(190, 31);
             this.TitleLabel.TabIndex = 20;
@@ -57,17 +57,18 @@
             // NameTextBox
             // 
             this.NameTextBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameTextBox.Location = new System.Drawing.Point(205, 87);
+            this.NameTextBox.Location = new System.Drawing.Point(205, 73);
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(240, 31);
             this.NameTextBox.TabIndex = 21;
+            this.NameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NameTextBox_KeyPress);
             // 
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
             this.NameLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.NameLabel.Location = new System.Drawing.Point(24, 95);
+            this.NameLabel.Location = new System.Drawing.Point(24, 81);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(58, 23);
             this.NameLabel.TabIndex = 22;
@@ -78,7 +79,7 @@
             this.LastNameLabel.AutoSize = true;
             this.LastNameLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LastNameLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.LastNameLabel.Location = new System.Drawing.Point(24, 155);
+            this.LastNameLabel.Location = new System.Drawing.Point(24, 141);
             this.LastNameLabel.Name = "LastNameLabel";
             this.LastNameLabel.Size = new System.Drawing.Size(118, 23);
             this.LastNameLabel.TabIndex = 24;
@@ -87,16 +88,17 @@
             // LastNameTextBox
             // 
             this.LastNameTextBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LastNameTextBox.Location = new System.Drawing.Point(205, 147);
+            this.LastNameTextBox.Location = new System.Drawing.Point(205, 133);
             this.LastNameTextBox.Name = "LastNameTextBox";
             this.LastNameTextBox.Size = new System.Drawing.Size(240, 31);
             this.LastNameTextBox.TabIndex = 23;
+            this.LastNameTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LastNameTextBox_KeyPress);
             // 
             // DateOfBirthPicker
             // 
             this.DateOfBirthPicker.CalendarFont = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateOfBirthPicker.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DateOfBirthPicker.Location = new System.Drawing.Point(205, 203);
+            this.DateOfBirthPicker.Location = new System.Drawing.Point(205, 189);
             this.DateOfBirthPicker.Name = "DateOfBirthPicker";
             this.DateOfBirthPicker.Size = new System.Drawing.Size(240, 31);
             this.DateOfBirthPicker.TabIndex = 25;
@@ -106,7 +108,7 @@
             this.DateOfBirthLabel.AutoSize = true;
             this.DateOfBirthLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateOfBirthLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.DateOfBirthLabel.Location = new System.Drawing.Point(24, 209);
+            this.DateOfBirthLabel.Location = new System.Drawing.Point(24, 195);
             this.DateOfBirthLabel.Name = "DateOfBirthLabel";
             this.DateOfBirthLabel.Size = new System.Drawing.Size(166, 23);
             this.DateOfBirthLabel.TabIndex = 26;
@@ -117,7 +119,7 @@
             this.SexLabel.AutoSize = true;
             this.SexLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SexLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.SexLabel.Location = new System.Drawing.Point(24, 264);
+            this.SexLabel.Location = new System.Drawing.Point(24, 250);
             this.SexLabel.Name = "SexLabel";
             this.SexLabel.Size = new System.Drawing.Size(46, 23);
             this.SexLabel.TabIndex = 27;
@@ -128,7 +130,7 @@
             this.ClassLabel.AutoSize = true;
             this.ClassLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClassLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.ClassLabel.Location = new System.Drawing.Point(24, 319);
+            this.ClassLabel.Location = new System.Drawing.Point(24, 305);
             this.ClassLabel.Name = "ClassLabel";
             this.ClassLabel.Size = new System.Drawing.Size(70, 23);
             this.ClassLabel.TabIndex = 28;
@@ -136,18 +138,20 @@
             // 
             // SexComboBox
             // 
+            this.SexComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SexComboBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SexComboBox.FormattingEnabled = true;
-            this.SexComboBox.Location = new System.Drawing.Point(205, 256);
+            this.SexComboBox.Location = new System.Drawing.Point(205, 242);
             this.SexComboBox.Name = "SexComboBox";
             this.SexComboBox.Size = new System.Drawing.Size(239, 31);
             this.SexComboBox.TabIndex = 29;
             // 
             // ClassComboBox
             // 
+            this.ClassComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ClassComboBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClassComboBox.FormattingEnabled = true;
-            this.ClassComboBox.Location = new System.Drawing.Point(206, 311);
+            this.ClassComboBox.Location = new System.Drawing.Point(206, 297);
             this.ClassComboBox.Name = "ClassComboBox";
             this.ClassComboBox.Size = new System.Drawing.Size(239, 31);
             this.ClassComboBox.TabIndex = 30;
@@ -161,7 +165,7 @@
             this.SaveButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.SaveButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.SaveButton.Location = new System.Drawing.Point(539, 165);
+            this.SaveButton.Location = new System.Drawing.Point(539, 151);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(125, 69);
             this.SaveButton.TabIndex = 31;
@@ -178,7 +182,7 @@
             this.CancelButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.CancelButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CancelButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.CancelButton.Location = new System.Drawing.Point(539, 273);
+            this.CancelButton.Location = new System.Drawing.Point(539, 259);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(125, 69);
             this.CancelButton.TabIndex = 32;
@@ -191,7 +195,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(716, 376);
+            this.ClientSize = new System.Drawing.Size(705, 345);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.ClassComboBox);

@@ -42,18 +42,18 @@ namespace Library.Domain.Repositories
             return numberOfChanges != 0;
         }
 
-        public bool TryUpdate(int studentToUpdateId, Author updated)
+        public bool TryUpdate(Author toUpdate, Author updated)
         {
-            var toUpdate = GetAuthor(studentToUpdateId);
+            var tmpToUpdate = GetAllAuthors().FirstOrDefault(author => author.ToString() == toUpdate.ToString());
 
-            if (toUpdate == null)
+            if (tmpToUpdate == null)
                 return false;
             
-            toUpdate.Name = updated.Name;
-            toUpdate.LastName = updated.LastName;
+            tmpToUpdate.Name = updated.Name;
+            tmpToUpdate.LastName = updated.LastName;
 
-            _context.SaveChanges();
-            return true;
+            var numberOfChanges = _context.SaveChanges();
+            return numberOfChanges != 0;
         }
     }
 }

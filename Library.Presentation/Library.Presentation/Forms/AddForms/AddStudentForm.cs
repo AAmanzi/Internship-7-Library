@@ -59,14 +59,9 @@ namespace Library.Presentation.Forms.AddForms
                 return;
             }
 
-            var toAdd = new Student
-            {
-                Name = NameTextBox.Text,
-                LastName = LastNameTextBox.Text,
-                DateOfBirth = DateOfBirthPicker.Value,
-                Sex = (Sex)Enum.Parse(typeof(Sex), SexComboBox.Text),
-                SchoolClass = (SchoolClass)Enum.Parse(typeof(SchoolClass), ClassComboBox.Text)
-            };
+            var toAdd = new Student(NameTextBox.Text, LastNameTextBox.Text, DateOfBirthPicker.Value,
+                (Sex) Enum.Parse(typeof(Sex), SexComboBox.Text),
+                (SchoolClass) Enum.Parse(typeof(SchoolClass), ClassComboBox.Text));
 
             _studentRepository.AddStudent(toAdd);
             Close();
@@ -76,6 +71,16 @@ namespace Library.Presentation.Forms.AddForms
         {
             return (string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(LastNameTextBox.Text)
                     || string.IsNullOrWhiteSpace(SexComboBox.Text) || string.IsNullOrWhiteSpace(ClassComboBox.Text));
+        }
+
+        private void NameTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar);
+        }
+
+        private void LastNameTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar);
         }
     }
 }

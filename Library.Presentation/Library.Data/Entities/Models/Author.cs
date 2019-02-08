@@ -14,6 +14,17 @@ namespace Library.Data.Entities.Models
 
         public ICollection<Book> Books { get; set; }
 
+        public Author()
+        {
+            
+        }
+
+        public Author(string name, string lastName)
+        {
+            Name = name;
+            LastName = lastName;
+        }
+
         public override string ToString()
         {
             return $"{Name} {LastName}";

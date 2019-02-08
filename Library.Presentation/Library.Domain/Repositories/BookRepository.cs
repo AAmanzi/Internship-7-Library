@@ -68,21 +68,21 @@ namespace Library.Domain.Repositories
             return numberOfChanges != 0;
         }
 
-        public bool TryUpdate(int bookToUpdateId, Book updated)
+        public bool TryUpdate(Book toUpdate, Book updated)
         {
-            var toUpdate = GetBook(bookToUpdateId);
+            var tmpToUpdate = GetAllBooks().FirstOrDefault(book => book.ToString() == toUpdate.ToString());
 
-            if (toUpdate == null)
+            if (tmpToUpdate == null)
                 return false;
 
-            toUpdate.Name = updated.Name;
-            toUpdate.PageCount = updated.PageCount;
-            toUpdate.Genre = updated.Genre;
-            toUpdate.Author = updated.Author;
-            toUpdate.Publisher = updated.Publisher;
+            tmpToUpdate.Name = updated.Name;
+            tmpToUpdate.PageCount = updated.PageCount;
+            tmpToUpdate.Genre = updated.Genre;
+            tmpToUpdate.Author = _context.Authors.First(author => author == updated.Author);
+            tmpToUpdate.Publisher = _context.Publishers.First(publisher => publisher == updated.Publisher);
 
-            _context.SaveChanges();
-            return true;
+            var numberOfChanges = _context.SaveChanges();
+            return numberOfChanges != 0;
         }
     }
 }

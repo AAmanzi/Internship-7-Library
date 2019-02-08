@@ -1,6 +1,6 @@
-﻿namespace Library.Presentation.Forms.AddForms
+﻿namespace Library.Presentation.Forms.EditForms
 {
-    partial class AddAuthorForm
+    partial class EditStudentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,6 +30,12 @@
         {
             this.CancelButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
+            this.ClassComboBox = new System.Windows.Forms.ComboBox();
+            this.SexComboBox = new System.Windows.Forms.ComboBox();
+            this.ClassLabel = new System.Windows.Forms.Label();
+            this.SexLabel = new System.Windows.Forms.Label();
+            this.DateOfBirthLabel = new System.Windows.Forms.Label();
+            this.DateOfBirthPicker = new System.Windows.Forms.DateTimePicker();
             this.LastNameLabel = new System.Windows.Forms.Label();
             this.LastNameTextBox = new System.Windows.Forms.TextBox();
             this.NameLabel = new System.Windows.Forms.Label();
@@ -46,7 +52,7 @@
             this.CancelButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.CancelButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CancelButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.CancelButton.Location = new System.Drawing.Point(487, 208);
+            this.CancelButton.Location = new System.Drawing.Point(547, 259);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(125, 69);
             this.CancelButton.TabIndex = 45;
@@ -63,7 +69,7 @@
             this.SaveButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.SaveButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.SaveButton.Location = new System.Drawing.Point(487, 100);
+            this.SaveButton.Location = new System.Drawing.Point(547, 151);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(125, 69);
             this.SaveButton.TabIndex = 44;
@@ -71,12 +77,74 @@
             this.SaveButton.UseVisualStyleBackColor = false;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
+            // ClassComboBox
+            // 
+            this.ClassComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ClassComboBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClassComboBox.FormattingEnabled = true;
+            this.ClassComboBox.Location = new System.Drawing.Point(214, 297);
+            this.ClassComboBox.Name = "ClassComboBox";
+            this.ClassComboBox.Size = new System.Drawing.Size(239, 31);
+            this.ClassComboBox.TabIndex = 43;
+            // 
+            // SexComboBox
+            // 
+            this.SexComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SexComboBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SexComboBox.FormattingEnabled = true;
+            this.SexComboBox.Location = new System.Drawing.Point(213, 242);
+            this.SexComboBox.Name = "SexComboBox";
+            this.SexComboBox.Size = new System.Drawing.Size(239, 31);
+            this.SexComboBox.TabIndex = 42;
+            // 
+            // ClassLabel
+            // 
+            this.ClassLabel.AutoSize = true;
+            this.ClassLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClassLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.ClassLabel.Location = new System.Drawing.Point(32, 305);
+            this.ClassLabel.Name = "ClassLabel";
+            this.ClassLabel.Size = new System.Drawing.Size(70, 23);
+            this.ClassLabel.TabIndex = 41;
+            this.ClassLabel.Text = "Class";
+            // 
+            // SexLabel
+            // 
+            this.SexLabel.AutoSize = true;
+            this.SexLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SexLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.SexLabel.Location = new System.Drawing.Point(32, 250);
+            this.SexLabel.Name = "SexLabel";
+            this.SexLabel.Size = new System.Drawing.Size(46, 23);
+            this.SexLabel.TabIndex = 40;
+            this.SexLabel.Text = "Sex";
+            // 
+            // DateOfBirthLabel
+            // 
+            this.DateOfBirthLabel.AutoSize = true;
+            this.DateOfBirthLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateOfBirthLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.DateOfBirthLabel.Location = new System.Drawing.Point(32, 195);
+            this.DateOfBirthLabel.Name = "DateOfBirthLabel";
+            this.DateOfBirthLabel.Size = new System.Drawing.Size(166, 23);
+            this.DateOfBirthLabel.TabIndex = 39;
+            this.DateOfBirthLabel.Text = "Date of birth";
+            // 
+            // DateOfBirthPicker
+            // 
+            this.DateOfBirthPicker.CalendarFont = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateOfBirthPicker.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DateOfBirthPicker.Location = new System.Drawing.Point(213, 189);
+            this.DateOfBirthPicker.Name = "DateOfBirthPicker";
+            this.DateOfBirthPicker.Size = new System.Drawing.Size(240, 31);
+            this.DateOfBirthPicker.TabIndex = 38;
+            // 
             // LastNameLabel
             // 
             this.LastNameLabel.AutoSize = true;
             this.LastNameLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LastNameLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.LastNameLabel.Location = new System.Drawing.Point(64, 188);
+            this.LastNameLabel.Location = new System.Drawing.Point(32, 141);
             this.LastNameLabel.Name = "LastNameLabel";
             this.LastNameLabel.Size = new System.Drawing.Size(118, 23);
             this.LastNameLabel.TabIndex = 37;
@@ -85,7 +153,7 @@
             // LastNameTextBox
             // 
             this.LastNameTextBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LastNameTextBox.Location = new System.Drawing.Point(200, 180);
+            this.LastNameTextBox.Location = new System.Drawing.Point(213, 133);
             this.LastNameTextBox.Name = "LastNameTextBox";
             this.LastNameTextBox.Size = new System.Drawing.Size(240, 31);
             this.LastNameTextBox.TabIndex = 36;
@@ -96,7 +164,7 @@
             this.NameLabel.AutoSize = true;
             this.NameLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.NameLabel.Location = new System.Drawing.Point(64, 128);
+            this.NameLabel.Location = new System.Drawing.Point(32, 81);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(58, 23);
             this.NameLabel.TabIndex = 35;
@@ -105,7 +173,7 @@
             // NameTextBox
             // 
             this.NameTextBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameTextBox.Location = new System.Drawing.Point(200, 120);
+            this.NameTextBox.Location = new System.Drawing.Point(213, 73);
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(240, 31);
             this.NameTextBox.TabIndex = 34;
@@ -116,27 +184,33 @@
             this.TitleLabel.AutoSize = true;
             this.TitleLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TitleLabel.ForeColor = System.Drawing.Color.Gold;
-            this.TitleLabel.Location = new System.Drawing.Point(266, 35);
+            this.TitleLabel.Location = new System.Drawing.Point(297, 9);
             this.TitleLabel.Name = "TitleLabel";
-            this.TitleLabel.Size = new System.Drawing.Size(174, 31);
+            this.TitleLabel.Size = new System.Drawing.Size(206, 31);
             this.TitleLabel.TabIndex = 33;
-            this.TitleLabel.Text = "ADD AUTHOR";
+            this.TitleLabel.Text = "EDIT STUDENT";
             // 
-            // AddAuthorForm
+            // EditStudentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(644, 312);
+            this.ClientSize = new System.Drawing.Size(712, 355);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.SaveButton);
+            this.Controls.Add(this.ClassComboBox);
+            this.Controls.Add(this.SexComboBox);
+            this.Controls.Add(this.ClassLabel);
+            this.Controls.Add(this.SexLabel);
+            this.Controls.Add(this.DateOfBirthLabel);
+            this.Controls.Add(this.DateOfBirthPicker);
             this.Controls.Add(this.LastNameLabel);
             this.Controls.Add(this.LastNameTextBox);
             this.Controls.Add(this.NameLabel);
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.TitleLabel);
-            this.Name = "AddAuthorForm";
-            this.Text = "AddAuthorForm";
+            this.Name = "EditStudentForm";
+            this.Text = "EditStudentForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,6 +220,12 @@
 
         private new System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.ComboBox ClassComboBox;
+        private System.Windows.Forms.ComboBox SexComboBox;
+        private System.Windows.Forms.Label ClassLabel;
+        private System.Windows.Forms.Label SexLabel;
+        private System.Windows.Forms.Label DateOfBirthLabel;
+        private System.Windows.Forms.DateTimePicker DateOfBirthPicker;
         private System.Windows.Forms.Label LastNameLabel;
         private System.Windows.Forms.TextBox LastNameTextBox;
         private System.Windows.Forms.Label NameLabel;

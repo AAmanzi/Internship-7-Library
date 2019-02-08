@@ -84,6 +84,7 @@
             this.EditButton.TabIndex = 9;
             this.EditButton.Text = "Edit book";
             this.EditButton.UseVisualStyleBackColor = false;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // AddButton
             // 
@@ -141,6 +142,7 @@
             this.NumberOfCopiesToAddTextBox.Name = "NumberOfCopiesToAddTextBox";
             this.NumberOfCopiesToAddTextBox.Size = new System.Drawing.Size(96, 31);
             this.NumberOfCopiesToAddTextBox.TabIndex = 35;
+            this.NumberOfCopiesToAddTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOfCopiesToAddTextBox_KeyPress);
             // 
             // AddCopiesButton
             // 
@@ -183,6 +185,7 @@
             this.NumberOfCopiesToDeleteTextBox.Name = "NumberOfCopiesToDeleteTextBox";
             this.NumberOfCopiesToDeleteTextBox.Size = new System.Drawing.Size(96, 31);
             this.NumberOfCopiesToDeleteTextBox.TabIndex = 38;
+            this.NumberOfCopiesToDeleteTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOfCopiesToDeleteTextBox_KeyPress);
             // 
             // ManageBooksForm
             // 

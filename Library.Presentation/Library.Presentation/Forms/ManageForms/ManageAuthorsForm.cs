@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Library.Domain.Repositories;
 using Library.Presentation.Forms.AddForms;
+using Library.Presentation.Forms.EditForms;
 
 namespace Library.Presentation.Forms.ManageForms
 {
@@ -77,7 +78,7 @@ namespace Library.Presentation.Forms.ManageForms
 
             var selected = AuthorsListBox.SelectedItem.ToString();
             var checkedAuthor = _authorRepository.GetAllAuthors()
-                .FirstOrDefault(author => author.ToString() == selected);
+                .First(author => author.ToString() == selected);
 
             if (_bookRepository.GetBooksByAuthor(checkedAuthor).Count != 0)
             {
@@ -89,6 +90,18 @@ namespace Library.Presentation.Forms.ManageForms
             var confirmCancel = new ConfirmForm();
             confirmCancel.ShowDialog();
             return confirmCancel.IsConfirmed;
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            if (AuthorsListBox.CheckedItems.Count == 0)
+                return;
+
+            var selected = AuthorsListBox.SelectedItem.ToString();
+
+            var editSelectedAuthor = new EditAuthorForm(selected);
+            editSelectedAuthor.ShowDialog();
+            RefreshAuthorsListBox();
         }
     }
 }

@@ -40,17 +40,17 @@ namespace Library.Domain.Repositories
             return numberOfChanges != 0;
         }
 
-        public bool TryUpdate(int publisherToUpdateId, Publisher updated)
+        public bool TryUpdate(Publisher toUpdate, Publisher updated)
         {
-            var toUpdate = GetPublisher(publisherToUpdateId);
+            var tmpToUpdate = GetAllPublishers().FirstOrDefault(publisher => publisher.ToString() == toUpdate.ToString());
 
-            if (toUpdate == null)
+            if (tmpToUpdate == null)
                 return false;
+            
+            tmpToUpdate.Name = updated.Name;
 
-            toUpdate.Name = updated.Name;
-
-            _context.SaveChanges();
-            return true;
+            var numberOfChanges = _context.SaveChanges();
+            return numberOfChanges != 0;
         }
     }
 }

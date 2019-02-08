@@ -63,10 +63,10 @@ namespace Library.Presentation.Forms
             var selected = BooksListBox.SelectedItem.ToString();
             var test = _borrowEventRepository.GetAllBorrowEvents().ToList();
 
-            var checkedBorrowEvent = test.FirstOrDefault(borrowEvent =>
+            var checkedBorrowEvent = test.First(borrowEvent =>
                 borrowEvent.Student.ToString() == StudentComboBox.Text &&
                 borrowEvent.BookCopy.Book.ToString() == selected && borrowEvent.DateOfReturn == null);
-            DateOfRentTextBox.Text = $"{checkedBorrowEvent.DateOfBorrow :dd MMMM yyyy}";
+            DateOfRentTextBox.Text = $@"{checkedBorrowEvent.DateOfBorrow :dd MMMM yyyy}";
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -78,7 +78,7 @@ namespace Library.Presentation.Forms
                 return;
             }
             var selected = BooksListBox.SelectedItem.ToString();
-            var checkedBorrowEvent = _borrowEventRepository.GetAllBorrowEvents().FirstOrDefault(borrowEvent =>
+            var checkedBorrowEvent = _borrowEventRepository.GetAllBorrowEvents().First(borrowEvent =>
                 borrowEvent.Student.ToString() == StudentComboBox.Text &&
                 borrowEvent.BookCopy.Book.ToString() == selected && borrowEvent.DateOfReturn == null);
 

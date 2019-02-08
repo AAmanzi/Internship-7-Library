@@ -46,21 +46,5 @@ namespace Library.Domain.Repositories
             var numberOfChanges = _context.SaveChanges();
             return numberOfChanges != 0;
         }
-        
-        /*
-        public bool TryUpdate(int bookCopyToUpdateId, BookCopy updated)
-        {
-            var toUpdate = GetBookCopy(bookCopyToUpdateId);
-
-            if (toUpdate == null)
-                return false;
-
-            toUpdate.Book = updated.Book;
-            toUpdate.Status = updated.Status;
-
-            _context.SaveChanges();
-            return true;
-        }
-        */
     }
 }

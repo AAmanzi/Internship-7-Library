@@ -45,7 +45,7 @@ namespace Library.Presentation.Forms.AddForms
         {
             foreach (var author in _authorRepository.GetAllAuthors())
             {
-                AuthorComboBox.Items.Add($"{author.Name} {author.LastName}");
+                AuthorComboBox.Items.Add($"{author}");
             }
         }
 
@@ -53,7 +53,7 @@ namespace Library.Presentation.Forms.AddForms
         {
             foreach (var publisher in _publisherRepository.GetAllPublishers())
             {
-                PublisherComboBox.Items.Add($"{publisher.Name}");
+                PublisherComboBox.Items.Add($"{publisher}");
             }
         }
 
@@ -79,8 +79,8 @@ namespace Library.Presentation.Forms.AddForms
                 Name = NameTextBox.Text,
                 PageCount = PageCountTextBox.Text,
                 Genre = (Genre)Enum.Parse(typeof(Genre), GenreComboBox.Text),
-                Author = _authorRepository.GetAllAuthors().FirstOrDefault(author => (author.Name + @" " + author.LastName) == AuthorComboBox.Text),
-                Publisher = _publisherRepository.GetAllPublishers().FirstOrDefault(publisher => publisher.Name == PublisherComboBox.Text)
+                Author = _authorRepository.GetAllAuthors().First(author => author.ToString() == AuthorComboBox.Text),
+                Publisher = _publisherRepository.GetAllPublishers().First(publisher => publisher.ToString() == PublisherComboBox.Text)
             };
 
             _bookRepository.AddBook(toAdd);
@@ -99,6 +99,22 @@ namespace Library.Presentation.Forms.AddForms
         {
             return (string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(PageCountTextBox.Text)
                     || string.IsNullOrWhiteSpace(NumberOfCopiesTextBox.Text) || string.IsNullOrWhiteSpace(GenreComboBox.Text));
+        }
+
+        private void NameTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) &&
+                        !char.IsWhiteSpace(e.KeyChar) && e.KeyChar != '-' && e.KeyChar != ':';
+        }
+
+        private void PageCountTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void NumberOfCopiesTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }

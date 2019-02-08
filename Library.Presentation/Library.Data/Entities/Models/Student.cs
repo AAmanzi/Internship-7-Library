@@ -18,6 +18,15 @@ namespace Library.Data.Entities.Models
 
         public ICollection<BorrowEvent> BorrowEvents { get; set; }
 
+        public Student(string name, string lastName, DateTime dateOfBirth, Sex sex, SchoolClass schoolClass)
+        {
+            Name = name;
+            LastName = lastName;
+            DateOfBirth = dateOfBirth;
+            Sex = sex;
+            SchoolClass = schoolClass;
+        }
+
         public override string ToString()
         {
             return $"{Name} {LastName} - {SchoolClass}";

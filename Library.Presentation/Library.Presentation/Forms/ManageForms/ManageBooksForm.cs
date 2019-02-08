@@ -5,6 +5,7 @@ using Library.Data.Entities.Models;
 using Library.Data.Enums;
 using Library.Domain.Repositories;
 using Library.Presentation.Forms.AddForms;
+using Library.Presentation.Forms.EditForms;
 
 namespace Library.Presentation.Forms.ManageForms
 {
@@ -177,6 +178,28 @@ namespace Library.Presentation.Forms.ManageForms
             var confirmCancel = new ConfirmForm();
             confirmCancel.ShowDialog();
             return confirmCancel.IsConfirmed;
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            if (BooksListBox.CheckedItems.Count == 0)
+                return;
+
+            var selected = BooksListBox.SelectedItem.ToString();
+
+            var editSelectedBook = new EditBookForm(selected);
+            editSelectedBook.ShowDialog();
+            RefreshBooksListBox();
+        }
+
+        private void NumberOfCopiesToAddTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void NumberOfCopiesToDeleteTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }

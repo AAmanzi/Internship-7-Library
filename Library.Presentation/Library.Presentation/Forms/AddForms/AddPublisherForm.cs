@@ -38,10 +38,7 @@ namespace Library.Presentation.Forms.AddForms
                 return;
             }
 
-            var toAdd = new Publisher
-            {
-                Name = NameTextBox.Text
-            };
+            var toAdd = new Publisher(NameTextBox.Text);
 
             _publisherRepository.AddPublisher(toAdd);
             Close();
@@ -50,6 +47,11 @@ namespace Library.Presentation.Forms.AddForms
         private bool CheckForErrors()
         {
             return string.IsNullOrWhiteSpace(NameTextBox.Text);
+        }
+
+        private void NameTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar);
         }
     }
 }

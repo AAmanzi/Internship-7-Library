@@ -85,6 +85,7 @@
             // 
             // StudentComboBox
             // 
+            this.StudentComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.StudentComboBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StudentComboBox.FormattingEnabled = true;
             this.StudentComboBox.Location = new System.Drawing.Point(231, 105);
@@ -157,7 +158,7 @@
         #endregion
 
         private System.Windows.Forms.Label TitleLabel;
-        private new System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.ComboBox StudentComboBox;
         private System.Windows.Forms.Label StudentLabel;
