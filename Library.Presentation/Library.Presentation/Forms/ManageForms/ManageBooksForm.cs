@@ -24,7 +24,7 @@ namespace Library.Presentation.Forms.ManageForms
             _bookRepository = new BookRepository();
             _bookCopyRepository = new BookCopyRepository();
             BooksListBox.Items.Clear();
-            foreach (var book in _bookRepository.GetAllBooks().OrderBy(book => book.Name).ThenBy(book => book.Publisher))
+            foreach (var book in _bookRepository.GetAllBooks().OrderBy(book => book.Name).ThenBy(book => book.Publisher.ToString()))
             {
                 BooksListBox.Items.Add(book);
             }

@@ -35,7 +35,9 @@ namespace Library.Presentation.Forms.EditForms
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            //check errors
+            if (!CheckForErrors())
+                return;
+
             var authorToUpdate = _authorRepository.GetAllAuthors()
                 .First(author => author.ToString() == _selectedAuthor);
 
@@ -43,6 +45,31 @@ namespace Library.Presentation.Forms.EditForms
 
             _authorRepository.TryUpdate(authorToUpdate, authorUpdated);
             Close();
+        }
+
+        private bool CheckForErrors()
+        {
+            if (string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(LastNameTextBox.Text))
+            {
+                var fieldsError = new ErrorForm("You are missing some required fields!");
+                fieldsError.ShowDialog();
+                return false;
+            }
+
+            var authorToUpdate = _authorRepository.GetAllAuthors()
+                .First(author => author.ToString() == _selectedAuthor);
+
+            if (authorToUpdate.Name == NameTextBox.Text && authorToUpdate.LastName == LastNameTextBox.Text)
+            {
+                Close();
+                return false;
+            }
+
+            if (_authorRepository.GetAllAuthors().FirstOrDefault(author =>
+                    author.Name == NameTextBox.Text && author.LastName == LastNameTextBox.Text) == null) return true;
+            var existingAuthor = new ErrorForm("That author already exists!");
+            existingAuthor.ShowDialog();
+            return false;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

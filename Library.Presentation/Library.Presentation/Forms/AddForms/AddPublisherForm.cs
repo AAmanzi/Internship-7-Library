@@ -31,12 +31,8 @@ namespace Library.Presentation.Forms.AddForms
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (CheckForErrors())
-            {
-                var fieldsError = new ErrorForm("You are missing some required fields!");
-                fieldsError.ShowDialog();
+            if (!CheckForErrors())
                 return;
-            }
 
             var toAdd = new Publisher(NameTextBox.Text);
 
@@ -46,7 +42,18 @@ namespace Library.Presentation.Forms.AddForms
 
         private bool CheckForErrors()
         {
-            return string.IsNullOrWhiteSpace(NameTextBox.Text);
+            if (string.IsNullOrWhiteSpace(NameTextBox.Text))
+            {
+                var fieldsError = new ErrorForm("You are missing some required fields!");
+                fieldsError.ShowDialog();
+                return false;
+            }
+
+            if (_publisherRepository.GetAllPublishers()
+                    .FirstOrDefault(publisher => publisher.Name == NameTextBox.Text) == null) return true;
+            var existingPublisher = new ErrorForm("That publisher already exists!");
+            existingPublisher.ShowDialog();
+            return false;
         }
 
         private void NameTextBox_KeyPress(object sender, KeyPressEventArgs e)

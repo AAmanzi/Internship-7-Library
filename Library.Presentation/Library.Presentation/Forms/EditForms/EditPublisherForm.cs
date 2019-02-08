@@ -34,7 +34,8 @@ namespace Library.Presentation.Forms.EditForms
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            //check errors
+            if (!CheckForErrors())
+                return;
             var publisherToUpdate = _publisherRepository.GetAllPublishers()
                 .First(publisher => publisher.ToString() == _selectedPublisher);
 
@@ -42,6 +43,31 @@ namespace Library.Presentation.Forms.EditForms
 
             _publisherRepository.TryUpdate(publisherToUpdate, authorUpdated);
             Close();
+        }
+
+        private bool CheckForErrors()
+        {
+            if (string.IsNullOrWhiteSpace(NameTextBox.Text))
+            {
+                var fieldsError = new ErrorForm("You are missing some required fields!");
+                fieldsError.ShowDialog();
+                return false;
+            }
+
+            var publisherToUpdate = _publisherRepository.GetAllPublishers()
+                .First(publisher => publisher.ToString() == _selectedPublisher);
+
+            if (publisherToUpdate.Name == NameTextBox.Text)
+            {
+                Close();
+                return false;
+            }
+
+            if (_publisherRepository.GetAllPublishers()
+                    .FirstOrDefault(publisher => publisher.Name == NameTextBox.Text) == null) return true;
+            var existingPublisher = new ErrorForm("That publisher already exists!");
+            existingPublisher.ShowDialog();
+            return false;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

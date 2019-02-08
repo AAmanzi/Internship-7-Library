@@ -52,12 +52,8 @@ namespace Library.Presentation.Forms.AddForms
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (CheckForErrors())
-            {
-                var fieldsError = new ErrorForm("You are missing some required fields!");
-                fieldsError.ShowDialog();
+            if (!CheckForErrors())
                 return;
-            }
 
             var toAdd = new Student(NameTextBox.Text, LastNameTextBox.Text, DateOfBirthPicker.Value,
                 (Sex) Enum.Parse(typeof(Sex), SexComboBox.Text),
@@ -69,8 +65,22 @@ namespace Library.Presentation.Forms.AddForms
 
         private bool CheckForErrors()
         {
-            return (string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(LastNameTextBox.Text)
-                    || string.IsNullOrWhiteSpace(SexComboBox.Text) || string.IsNullOrWhiteSpace(ClassComboBox.Text));
+            if ((string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(LastNameTextBox.Text)
+                                                             || string.IsNullOrWhiteSpace(SexComboBox.Text) ||
+                                                             string.IsNullOrWhiteSpace(ClassComboBox.Text)))
+            {
+                var fieldsError = new ErrorForm("You are missing some required fields!");
+                fieldsError.ShowDialog();
+                return false;
+            }
+
+            if (_studentRepository.GetAllStudents().FirstOrDefault(student =>
+                    student.Name == NameTextBox.Text && student.LastName == LastNameTextBox.Text &&
+                    student.SchoolClass == (SchoolClass) Enum.Parse(typeof(SchoolClass), ClassComboBox.Text)) ==
+                null) return true;
+            var existingStudent = new ErrorForm("That student already exists!");
+            existingStudent.ShowDialog();
+            return false;
         }
 
         private void NameTextBox_KeyPress(object sender, KeyPressEventArgs e)

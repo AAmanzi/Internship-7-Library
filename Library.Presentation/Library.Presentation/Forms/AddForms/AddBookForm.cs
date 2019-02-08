@@ -67,12 +67,8 @@ namespace Library.Presentation.Forms.AddForms
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (CheckForErrors())
-            {
-                var fieldsError = new ErrorForm("You are missing some required fields!");
-                fieldsError.ShowDialog();
+            if (!CheckForErrors())
                 return;
-            }
 
             var toAdd = new Book
             {
@@ -97,8 +93,21 @@ namespace Library.Presentation.Forms.AddForms
 
         private bool CheckForErrors()
         {
-            return (string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(PageCountTextBox.Text)
-                    || string.IsNullOrWhiteSpace(NumberOfCopiesTextBox.Text) || string.IsNullOrWhiteSpace(GenreComboBox.Text));
+            if ((string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(PageCountTextBox.Text)
+                                                             || string.IsNullOrWhiteSpace(NumberOfCopiesTextBox.Text) ||
+                                                             string.IsNullOrWhiteSpace(GenreComboBox.Text)))
+            {
+                var fieldsError = new ErrorForm("You are missing some required fields!");
+                fieldsError.ShowDialog();
+                return false;
+            }
+            
+            if (_bookRepository.GetAllBooks().FirstOrDefault(book =>
+                    book.Name == NameTextBox.Text && book.Author.ToString() == AuthorComboBox.Text &&
+                    book.Publisher.ToString() == PublisherComboBox.Text) == null) return true;
+            var existingBook = new ErrorForm("That book already exists!");
+            existingBook.ShowDialog();
+            return false;
         }
 
         private void NameTextBox_KeyPress(object sender, KeyPressEventArgs e)

@@ -31,12 +31,8 @@ namespace Library.Presentation.Forms.AddForms
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (CheckForErrors())
-            {
-                var fieldsError = new ErrorForm("You are missing some required fields");
-                fieldsError.ShowDialog();
+            if (!CheckForErrors())
                 return;
-            }
 
             var toAdd = new Author
             {
@@ -50,7 +46,18 @@ namespace Library.Presentation.Forms.AddForms
 
         private bool CheckForErrors()
         {
-            return string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(LastNameTextBox.Text);
+            if (string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(LastNameTextBox.Text))
+            {
+                var fieldsError = new ErrorForm("You are missing some required fields!");
+                fieldsError.ShowDialog();
+                return false;
+            }
+
+            if (_authorRepository.GetAllAuthors().FirstOrDefault(author =>
+                    author.Name == NameTextBox.Text && author.LastName == LastNameTextBox.Text) == null) return true;
+            var existingAuthor = new ErrorForm("That author already exists!");
+            existingAuthor.ShowDialog();
+            return false;
         }
 
         private void NameTextBox_KeyPress(object sender, KeyPressEventArgs e)

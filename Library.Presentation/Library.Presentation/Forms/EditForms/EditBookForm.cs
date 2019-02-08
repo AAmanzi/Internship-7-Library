@@ -72,7 +72,9 @@ namespace Library.Presentation.Forms.EditForms
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            //check errors
+            if (!CheckForErrors())
+                return;
+
             var bookToUpdate = _bookRepository.GetAllBooks()
                 .First(book => book.ToString() == _selectedBook);
 
@@ -85,6 +87,30 @@ namespace Library.Presentation.Forms.EditForms
 
             _bookRepository.TryUpdate(bookToUpdate, bookUpdated);
             Close();
+        }
+
+        private bool CheckForErrors()
+        {
+            if ((string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(PageCountTextBox.Text)
+                                                             || string.IsNullOrWhiteSpace(GenreComboBox.Text)))
+            {
+                var fieldsError = new ErrorForm("You are missing some required fields!");
+                fieldsError.ShowDialog();
+                return false;
+            }
+            
+            var bookToUpdate = _bookRepository.GetAllBooks()
+                .First(book => book.ToString() == _selectedBook);
+
+            if (bookToUpdate.Name == NameTextBox.Text && bookToUpdate.Author.ToString() == AuthorComboBox.Text &&
+                bookToUpdate.Publisher.ToString() == PublisherComboBox.Text) return true;
+
+            if (_bookRepository.GetAllBooks().FirstOrDefault(book =>
+                    book.Name == NameTextBox.Text && book.Author.ToString() == AuthorComboBox.Text &&
+                    book.Publisher.ToString() == PublisherComboBox.Text) == null) return true;
+            var existingBook = new ErrorForm("That book already exists!");
+            existingBook.ShowDialog();
+            return false;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

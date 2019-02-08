@@ -59,7 +59,9 @@ namespace Library.Presentation.Forms.EditForms
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            //check errors
+            if (!CheckForErrors())
+                return;
+
             var studentToUpdate = _studentRepository.GetAllStudents()
                 .First(author => author.ToString() == _selectedStudent);
 
@@ -69,6 +71,26 @@ namespace Library.Presentation.Forms.EditForms
 
             _studentRepository.TryUpdate(studentToUpdate, studentUpdated);
             Close();
+        }
+
+        private bool CheckForErrors()
+        {
+            if ((string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(LastNameTextBox.Text)
+                                                             || string.IsNullOrWhiteSpace(SexComboBox.Text) ||
+                                                             string.IsNullOrWhiteSpace(ClassComboBox.Text)))
+            {
+                var fieldsError = new ErrorForm("You are missing some required fields!");
+                fieldsError.ShowDialog();
+                return false;
+            }
+
+            if (_studentRepository.GetAllStudents().FirstOrDefault(student =>
+                    student.Name == NameTextBox.Text && student.LastName == LastNameTextBox.Text &&
+                    student.SchoolClass == (SchoolClass) Enum.Parse(typeof(SchoolClass), ClassComboBox.Text)) ==
+                null) return true;
+            var existingStudent = new ErrorForm("That student already exists!");
+            existingStudent.ShowDialog();
+            return false;
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

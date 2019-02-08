@@ -38,7 +38,7 @@ namespace Library.Presentation.Forms.AddForms
             _bookCopyRepository = new BookCopyRepository();
             _borrowEventRepository = new BorrowEventRepository();
             BooksListBox.Items.Clear();
-            foreach (var book in _bookRepository.GetAllBooks().OrderBy(book => book.Name).ThenBy(book => book.Publisher))
+            foreach (var book in _bookRepository.GetAllBooks().OrderBy(book => book.Name).ThenBy(book => book.Publisher.ToString()))
             {
                 BooksListBox.Items.Add(book);
             }
