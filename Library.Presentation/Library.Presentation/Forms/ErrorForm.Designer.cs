@@ -34,12 +34,11 @@
             // 
             // ErrorLabel
             // 
-            this.ErrorLabel.AutoSize = true;
             this.ErrorLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ErrorLabel.ForeColor = System.Drawing.Color.Gold;
-            this.ErrorLabel.Location = new System.Drawing.Point(199, 40);
+            this.ErrorLabel.Location = new System.Drawing.Point(12, 9);
             this.ErrorLabel.Name = "ErrorLabel";
-            this.ErrorLabel.Size = new System.Drawing.Size(110, 31);
+            this.ErrorLabel.Size = new System.Drawing.Size(507, 121);
             this.ErrorLabel.TabIndex = 34;
             this.ErrorLabel.Text = "Error!";
             this.ErrorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -72,7 +71,6 @@
             this.Name = "ErrorForm";
             this.Text = "ErrorForm";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
