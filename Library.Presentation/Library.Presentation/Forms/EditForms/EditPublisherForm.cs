@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Library.Data.Entities.Models;
 using Library.Domain.Repositories;
+using Library.Infrastructure.Extensions;
 
 namespace Library.Presentation.Forms.EditForms
 {
     public partial class EditPublisherForm : Form
     {
-        private PublisherRepository _publisherRepository;
+        private readonly PublisherRepository _publisherRepository;
         private readonly string _selectedPublisher;
         public EditPublisherForm(string selectedPublisher)
         {
@@ -34,6 +35,7 @@ namespace Library.Presentation.Forms.EditForms
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            NameTextBox.Text = NameTextBox.Text.TrimAndRemoveWhiteSpaces().FirstLetterToUpper();
             if (!CheckForErrors())
                 return;
             var publisherToUpdate = _publisherRepository.GetAllPublishers()
@@ -72,10 +74,7 @@ namespace Library.Presentation.Forms.EditForms
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            var confirmCancel = new ConfirmForm();
-            confirmCancel.ShowDialog();
-            if (confirmCancel.IsConfirmed)
-                Close();
+            Close();
         }
 
         private void NameTextBox_KeyPress(object sender, KeyPressEventArgs e)

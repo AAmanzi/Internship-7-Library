@@ -22,7 +22,8 @@ namespace Library.Presentation
 
         private void ViewButton_Click(object sender, EventArgs e)
         {
-
+            var view = new ViewMainForm();
+            view.ShowDialog();
         }
 
         private void ManageButton_Click(object sender, EventArgs e)

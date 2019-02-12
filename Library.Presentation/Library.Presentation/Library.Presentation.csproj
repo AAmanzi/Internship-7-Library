@@ -148,6 +148,36 @@
     <Compile Include="Forms\ReturnBorrowEventForm.Designer.cs">
       <DependentUpon>ReturnBorrowEventForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ViewForms\ViewBorrowedBooksForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewForms\ViewBorrowedBooksForm.Designer.cs">
+      <DependentUpon>ViewBorrowedBooksForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewForms\ViewCurrentBorrowEventsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewForms\ViewCurrentBorrowEventsForm.Designer.cs">
+      <DependentUpon>ViewCurrentBorrowEventsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewForms\ViewOverdueBorrowEventsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewForms\ViewOverdueBorrowEventsForm.Designer.cs">
+      <DependentUpon>ViewOverdueBorrowEventsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewForms\ViewReadOnlyBooksForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewForms\ViewReadOnlyBooksForm.Designer.cs">
+      <DependentUpon>ViewReadOnlyBooksForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewMainForm.Designer.cs">
+      <DependentUpon>ViewMainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,6 +237,21 @@
     <EmbeddedResource Include="Forms\ReturnBorrowEventForm.resx">
       <DependentUpon>ReturnBorrowEventForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewForms\ViewBorrowedBooksForm.resx">
+      <DependentUpon>ViewBorrowedBooksForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewForms\ViewCurrentBorrowEventsForm.resx">
+      <DependentUpon>ViewCurrentBorrowEventsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewForms\ViewOverdueBorrowEventsForm.resx">
+      <DependentUpon>ViewOverdueBorrowEventsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewForms\ViewReadOnlyBooksForm.resx">
+      <DependentUpon>ViewReadOnlyBooksForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewMainForm.resx">
+      <DependentUpon>ViewMainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -246,5 +291,6 @@
       <Name>Library.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

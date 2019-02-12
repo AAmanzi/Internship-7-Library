@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Library.Data.Entities.Models;
 using Library.Data.Enums;
 using Library.Domain.Repositories;
+using Library.Infrastructure.Extensions;
 
 namespace Library.Presentation.Forms.AddForms
 {
@@ -22,6 +23,8 @@ namespace Library.Presentation.Forms.AddForms
             InitializeComponent();
             LoadSexComboBox();
             LoadClassComboBox();
+            DateOfBirthPicker.Value = DateTime.Now.Subtract(new TimeSpan(365 * 10 + 2, 0, 0, 0));
+            DateOfBirthPicker.MaxDate = DateTime.Now.Subtract(new TimeSpan(365 * 5 + 1, 0, 0, 0));
         }
 
         private void LoadSexComboBox()
@@ -44,14 +47,14 @@ namespace Library.Presentation.Forms.AddForms
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            var confirmCancel = new ConfirmForm();
-            confirmCancel.ShowDialog();
-            if (confirmCancel.IsConfirmed)
-                Close();
+            Close();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            NameTextBox.Text = NameTextBox.Text.TrimAndRemoveWhiteSpaces().AllFirstLettersToUpper();
+            LastNameTextBox.Text = LastNameTextBox.Text.TrimAndRemoveWhiteSpaces().AllFirstLettersToUpper();
+
             if (!CheckForErrors())
                 return;
 

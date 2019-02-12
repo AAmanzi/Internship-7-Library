@@ -61,7 +61,9 @@ namespace Library.Presentation.Forms.ManageForms
 
             BookInfoListBox.Items.Add($"Number of copies: {bookCopies.Count}");
             BookInfoListBox.Items.Add(
-                $"Available copies: {bookCopies.Count(bookCopy => bookCopy.Status == BookStatus.Available)}");
+                bookCopies.All(bookCopy => bookCopy.Status != BookStatus.ReadOnly)
+                    ? $"Available copies: {bookCopies.Count(bookCopy => bookCopy.Status == BookStatus.Available)}"
+                    : "Read only");
         }
 
         private void AddCopiesButton_Click(object sender, EventArgs e)
@@ -71,6 +73,13 @@ namespace Library.Presentation.Forms.ManageForms
                 var selectError = new ErrorForm("You must select a book to add copies!");
                 selectError.ShowDialog();
                 return;
+            }
+
+            if (int.Parse(NumberOfCopiesToAddTextBox.Text) > 50)
+            {
+                NumberOfCopiesToAddTextBox.Text = @"50";
+                var copiesError = new ErrorForm("You can add a maximum of 50 copies at once");
+                copiesError.ShowDialog();
             }
 
             if (string.IsNullOrWhiteSpace(NumberOfCopiesToAddTextBox.Text))

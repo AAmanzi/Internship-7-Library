@@ -135,6 +135,7 @@
             this.DateOfBirthPicker.CalendarFont = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateOfBirthPicker.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateOfBirthPicker.Location = new System.Drawing.Point(213, 189);
+            this.DateOfBirthPicker.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
             this.DateOfBirthPicker.Name = "DateOfBirthPicker";
             this.DateOfBirthPicker.Size = new System.Drawing.Size(240, 31);
             this.DateOfBirthPicker.TabIndex = 38;

@@ -92,6 +92,7 @@
             this.StudentComboBox.Name = "StudentComboBox";
             this.StudentComboBox.Size = new System.Drawing.Size(330, 31);
             this.StudentComboBox.TabIndex = 49;
+            this.StudentComboBox.SelectedIndexChanged += new System.EventHandler(this.StudentComboBox_SelectedIndexChanged);
             // 
             // StudentLabel
             // 
@@ -130,6 +131,7 @@
             this.DateOfRentPicker.CalendarFont = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Strikeout, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateOfRentPicker.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DateOfRentPicker.Location = new System.Drawing.Point(231, 180);
+            this.DateOfRentPicker.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
             this.DateOfRentPicker.Name = "DateOfRentPicker";
             this.DateOfRentPicker.Size = new System.Drawing.Size(330, 31);
             this.DateOfRentPicker.TabIndex = 53;

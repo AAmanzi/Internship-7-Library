@@ -46,7 +46,7 @@
             this.AddButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.AddButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.AddButton.Location = new System.Drawing.Point(644, 99);
+            this.AddButton.Location = new System.Drawing.Point(807, 99);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(190, 69);
             this.AddButton.TabIndex = 13;
@@ -63,7 +63,7 @@
             this.EditButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.EditButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.EditButton.Location = new System.Drawing.Point(644, 197);
+            this.EditButton.Location = new System.Drawing.Point(807, 197);
             this.EditButton.Name = "EditButton";
             this.EditButton.Size = new System.Drawing.Size(190, 69);
             this.EditButton.TabIndex = 12;
@@ -80,7 +80,7 @@
             this.DeleteButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.DeleteButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DeleteButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.DeleteButton.Location = new System.Drawing.Point(644, 294);
+            this.DeleteButton.Location = new System.Drawing.Point(807, 294);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(190, 69);
             this.DeleteButton.TabIndex = 11;
@@ -93,7 +93,7 @@
             this.TitleLabel.AutoSize = true;
             this.TitleLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TitleLabel.ForeColor = System.Drawing.Color.Gold;
-            this.TitleLabel.Location = new System.Drawing.Point(292, 27);
+            this.TitleLabel.Location = new System.Drawing.Point(381, 9);
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(238, 31);
             this.TitleLabel.TabIndex = 14;
@@ -104,7 +104,7 @@
             this.AuthorsListBox.CheckOnClick = true;
             this.AuthorsListBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AuthorsListBox.FormattingEnabled = true;
-            this.AuthorsListBox.Location = new System.Drawing.Point(28, 99);
+            this.AuthorsListBox.Location = new System.Drawing.Point(45, 99);
             this.AuthorsListBox.Name = "AuthorsListBox";
             this.AuthorsListBox.Size = new System.Drawing.Size(279, 264);
             this.AuthorsListBox.TabIndex = 15;
@@ -115,9 +115,9 @@
             this.AuthorInfoListBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AuthorInfoListBox.FormattingEnabled = true;
             this.AuthorInfoListBox.ItemHeight = 23;
-            this.AuthorInfoListBox.Location = new System.Drawing.Point(362, 152);
+            this.AuthorInfoListBox.Location = new System.Drawing.Point(368, 152);
             this.AuthorInfoListBox.Name = "AuthorInfoListBox";
-            this.AuthorInfoListBox.Size = new System.Drawing.Size(232, 211);
+            this.AuthorInfoListBox.Size = new System.Drawing.Size(396, 211);
             this.AuthorInfoListBox.TabIndex = 16;
             // 
             // label1
@@ -125,18 +125,18 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Lucida Sans Typewriter", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Silver;
-            this.label1.Location = new System.Drawing.Point(436, 116);
+            this.label1.Location = new System.Drawing.Point(459, 118);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 31);
+            this.label1.Size = new System.Drawing.Size(238, 31);
             this.label1.TabIndex = 17;
-            this.label1.Text = "Books";
+            this.label1.Text = "Author\'s books";
             // 
             // ManageAuthorsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(874, 450);
+            this.ClientSize = new System.Drawing.Size(1037, 402);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AuthorInfoListBox);
             this.Controls.Add(this.AuthorsListBox);

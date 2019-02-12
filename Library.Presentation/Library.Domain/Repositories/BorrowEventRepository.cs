@@ -34,6 +34,14 @@ namespace Library.Domain.Repositories
                                                              borrowEvent.DateOfReturn == null).ToList();
         }
 
+        public ICollection<BorrowEvent> GetBorrowEventsByBook(string toGetBookString)
+        {
+            return GetAllBorrowEvents().Where(borrowEvent => borrowEvent.BookCopy.Book ==
+                                                             _context.Books.FirstOrDefault(book =>
+                                                                 book.ToString() == toGetBookString) &&
+                                                             borrowEvent.DateOfReturn == null).ToList();
+        }
+
         public void AddBorrowEvent(BorrowEvent toAdd)
         {
             _context.BookCopies.Find(toAdd.BookCopy.BookCopyId).Status = BookStatus.Borrowed;

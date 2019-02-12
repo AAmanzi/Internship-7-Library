@@ -43,6 +43,7 @@
             this.GenreComboBox = new System.Windows.Forms.ComboBox();
             this.NumberOfCopiesLabel = new System.Windows.Forms.Label();
             this.NumberOfCopiesTextBox = new System.Windows.Forms.TextBox();
+            this.IsReadOnlyCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // CancelButton
@@ -54,7 +55,7 @@
             this.CancelButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.CancelButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CancelButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.CancelButton.Location = new System.Drawing.Point(523, 345);
+            this.CancelButton.Location = new System.Drawing.Point(512, 393);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(125, 69);
             this.CancelButton.TabIndex = 45;
@@ -71,7 +72,7 @@
             this.SaveButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
             this.SaveButton.Font = new System.Drawing.Font("Lucida Sans Typewriter", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveButton.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.SaveButton.Location = new System.Drawing.Point(523, 237);
+            this.SaveButton.Location = new System.Drawing.Point(512, 287);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(125, 69);
             this.SaveButton.TabIndex = 44;
@@ -198,7 +199,7 @@
             this.NumberOfCopiesLabel.AutoSize = true;
             this.NumberOfCopiesLabel.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NumberOfCopiesLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.NumberOfCopiesLabel.Location = new System.Drawing.Point(65, 391);
+            this.NumberOfCopiesLabel.Location = new System.Drawing.Point(66, 391);
             this.NumberOfCopiesLabel.Name = "NumberOfCopiesLabel";
             this.NumberOfCopiesLabel.Size = new System.Drawing.Size(202, 23);
             this.NumberOfCopiesLabel.TabIndex = 50;
@@ -207,18 +208,32 @@
             // NumberOfCopiesTextBox
             // 
             this.NumberOfCopiesTextBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumberOfCopiesTextBox.Location = new System.Drawing.Point(303, 383);
+            this.NumberOfCopiesTextBox.Location = new System.Drawing.Point(304, 383);
             this.NumberOfCopiesTextBox.Name = "NumberOfCopiesTextBox";
             this.NumberOfCopiesTextBox.Size = new System.Drawing.Size(140, 31);
             this.NumberOfCopiesTextBox.TabIndex = 49;
             this.NumberOfCopiesTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOfCopiesTextBox_KeyPress);
+            // 
+            // IsReadOnlyCheckBox
+            // 
+            this.IsReadOnlyCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.IsReadOnlyCheckBox.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IsReadOnlyCheckBox.ForeColor = System.Drawing.Color.Gold;
+            this.IsReadOnlyCheckBox.Location = new System.Drawing.Point(70, 435);
+            this.IsReadOnlyCheckBox.MinimumSize = new System.Drawing.Size(25, 25);
+            this.IsReadOnlyCheckBox.Name = "IsReadOnlyCheckBox";
+            this.IsReadOnlyCheckBox.Size = new System.Drawing.Size(246, 27);
+            this.IsReadOnlyCheckBox.TabIndex = 51;
+            this.IsReadOnlyCheckBox.Text = "Is for read only";
+            this.IsReadOnlyCheckBox.UseVisualStyleBackColor = true;
             // 
             // AddBookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(697, 445);
+            this.ClientSize = new System.Drawing.Size(697, 513);
+            this.Controls.Add(this.IsReadOnlyCheckBox);
             this.Controls.Add(this.NumberOfCopiesLabel);
             this.Controls.Add(this.NumberOfCopiesTextBox);
             this.Controls.Add(this.GenreComboBox);
@@ -258,5 +273,6 @@
         private System.Windows.Forms.ComboBox GenreComboBox;
         private System.Windows.Forms.Label NumberOfCopiesLabel;
         private System.Windows.Forms.TextBox NumberOfCopiesTextBox;
+        private System.Windows.Forms.CheckBox IsReadOnlyCheckBox;
     }
 }

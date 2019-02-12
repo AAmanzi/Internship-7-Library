@@ -10,14 +10,15 @@ using System.Windows.Forms;
 using Library.Data.Entities.Models;
 using Library.Data.Enums;
 using Library.Domain.Repositories;
+using Library.Infrastructure.Extensions;
 
 namespace Library.Presentation.Forms.EditForms
 {
     public partial class EditBookForm : Form
     {
-        private BookRepository _bookRepository;
-        private AuthorRepository _authorRepository;
-        private PublisherRepository _publisherRepository;
+        private readonly BookRepository _bookRepository;
+        private readonly AuthorRepository _authorRepository;
+        private readonly PublisherRepository _publisherRepository;
         private readonly string _selectedBook;
         public EditBookForm(string selectedBook)
         {
@@ -72,6 +73,7 @@ namespace Library.Presentation.Forms.EditForms
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            NameTextBox.Text = NameTextBox.Text.TrimAndRemoveWhiteSpaces();
             if (!CheckForErrors())
                 return;
 
@@ -115,10 +117,7 @@ namespace Library.Presentation.Forms.EditForms
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            var confirmCancel = new ConfirmForm();
-            confirmCancel.ShowDialog();
-            if (confirmCancel.IsConfirmed)
-                Close();
+            Close();
         }
 
         private void NameTextBox_KeyPress(object sender, KeyPressEventArgs e)

@@ -10,12 +10,13 @@ using System.Windows.Forms;
 using Library.Data.Entities.Models;
 using Library.Data.Enums;
 using Library.Domain.Repositories;
+using Library.Infrastructure.Extensions;
 
 namespace Library.Presentation.Forms.EditForms
 {
     public partial class EditStudentForm : Form
     {
-        private StudentRepository _studentRepository;
+        private readonly StudentRepository _studentRepository;
         private readonly string _selectedStudent;
         public EditStudentForm(string selectedStudent)
         {
@@ -25,6 +26,8 @@ namespace Library.Presentation.Forms.EditForms
             LoadSexComboBox();
             LoadClassComboBox();
             LoadStudentInfo();
+            DateOfBirthPicker.Value = DateTime.Now.Subtract(new TimeSpan(365 * 10 + 2, 0, 0, 0));
+            DateOfBirthPicker.MaxDate = DateTime.Now.Subtract(new TimeSpan(365 * 5 + 1, 0, 0, 0));
         }
 
         private void LoadSexComboBox()
@@ -59,6 +62,9 @@ namespace Library.Presentation.Forms.EditForms
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            NameTextBox.Text = NameTextBox.Text.TrimAndRemoveWhiteSpaces().AllFirstLettersToUpper();
+            LastNameTextBox.Text = LastNameTextBox.Text.TrimAndRemoveWhiteSpaces().AllFirstLettersToUpper();
+
             if (!CheckForErrors())
                 return;
 
@@ -95,10 +101,7 @@ namespace Library.Presentation.Forms.EditForms
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            var confirmCancel = new ConfirmForm();
-            confirmCancel.ShowDialog();
-            if (confirmCancel.IsConfirmed)
-                Close();
+            Close();
         }
 
         private void LastNameTextBox_KeyPress(object sender, KeyPressEventArgs e)

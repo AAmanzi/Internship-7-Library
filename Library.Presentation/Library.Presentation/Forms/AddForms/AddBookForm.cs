@@ -59,14 +59,12 @@ namespace Library.Presentation.Forms.AddForms
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            var confirmCancel = new ConfirmForm();
-            confirmCancel.ShowDialog();
-            if (confirmCancel.IsConfirmed)
-                Close();
+            Close();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            NameTextBox.Text = NameTextBox.Text.TrimAndRemoveWhiteSpaces();
             if (!CheckForErrors())
                 return;
 
@@ -80,11 +78,12 @@ namespace Library.Presentation.Forms.AddForms
             };
 
             _bookRepository.AddBook(toAdd);
-            
+
+            var statusToAdd = IsReadOnlyCheckBox.Checked ? BookStatus.ReadOnly : BookStatus.Available;
 
             for (var i = 0; i < int.Parse(NumberOfCopiesTextBox.Text); i++)
             {
-                var copyToAdd = new BookCopy(BookStatus.Available, _bookRepository.GetAllBooks().FirstOrDefault(book => book.ToString() == toAdd.ToString()));
+                var copyToAdd = new BookCopy(statusToAdd, _bookRepository.GetAllBooks().FirstOrDefault(book => book.ToString() == toAdd.ToString()));
                 _bookCopyRepository.AddBookCopy(copyToAdd);
             }
 
@@ -94,12 +93,19 @@ namespace Library.Presentation.Forms.AddForms
         private bool CheckForErrors()
         {
             if ((string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(PageCountTextBox.Text)
-                                                             || string.IsNullOrWhiteSpace(NumberOfCopiesTextBox.Text) ||
-                                                             string.IsNullOrWhiteSpace(GenreComboBox.Text)))
+                                                             || string.IsNullOrWhiteSpace(NumberOfCopiesTextBox.Text)
+                                                             || string.IsNullOrWhiteSpace(GenreComboBox.Text)))
             {
                 var fieldsError = new ErrorForm("You are missing some required fields!");
                 fieldsError.ShowDialog();
                 return false;
+            }
+
+            if (int.Parse(NumberOfCopiesTextBox.Text) > 50)
+            {
+                NumberOfCopiesTextBox.Text = @"50";
+                var copiesError = new ErrorForm("You can add a maximum of 50 copies at once");
+                copiesError.ShowDialog();
             }
             
             if (_bookRepository.GetAllBooks().FirstOrDefault(book =>

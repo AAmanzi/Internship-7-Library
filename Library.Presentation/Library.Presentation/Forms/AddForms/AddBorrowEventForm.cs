@@ -27,8 +27,8 @@ namespace Library.Presentation.Forms.AddForms
             _bookCopyRepository = new BookCopyRepository();
             _borrowEventRepository = new BorrowEventRepository();
             InitializeComponent();
-            RefreshBooksListBox();
             LoadStudentComboBox();
+            DateOfRentPicker.MaxDate = DateTime.Now.Date;
         }
 
         private void RefreshBooksListBox()
@@ -38,14 +38,33 @@ namespace Library.Presentation.Forms.AddForms
             _bookCopyRepository = new BookCopyRepository();
             _borrowEventRepository = new BorrowEventRepository();
             BooksListBox.Items.Clear();
+
+            var studentBooksBorrowed = _borrowEventRepository.GetBorrowEventsByStudent(StudentComboBox.Text).ToList();
+
+            var readOnlyBookCopies =
+                _bookCopyRepository.GetAllBookCopies().Where(bookCopy => bookCopy.Status == BookStatus.ReadOnly)
+                    .GroupBy(bookCopy => bookCopy.Book.ToString()).ToList();
+
+            var readOnlyBooks = new List<Book>();
+
+            foreach (var bookCopy in readOnlyBookCopies)
+            {
+                readOnlyBooks.Add(_bookRepository.GetAllBooks().First(book => book.ToString() == bookCopy.Key));
+            }
+
             foreach (var book in _bookRepository.GetAllBooks().OrderBy(book => book.Name).ThenBy(book => book.Publisher.ToString()))
             {
+                if (studentBooksBorrowed.Any(borrowEvent => borrowEvent.BookCopy.Book.ToString() == book.ToString()) 
+                    || readOnlyBooks.Contains(book))
+                    continue;
                 BooksListBox.Items.Add(book);
             }
         }
 
         private void LoadStudentComboBox()
         {
+            StudentComboBox.Items.Clear();
+            StudentComboBox.Text = "";
             foreach (var student in _studentRepository.GetAllStudents())
             {
                 StudentComboBox.Items.Add(student);
@@ -84,7 +103,8 @@ namespace Library.Presentation.Forms.AddForms
                 var eventToAdd = new BorrowEvent(DateOfRentPicker.Value, null, studentToAdd, bookCopyToAdd);
                 _borrowEventRepository.AddBorrowEvent(eventToAdd);
             }
-            Close();
+            LoadStudentComboBox();
+            BooksListBox.Items.Clear();
         }
 
         private bool CheckForErrors()
@@ -95,6 +115,11 @@ namespace Library.Presentation.Forms.AddForms
         private void ExitButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void StudentComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshBooksListBox();
         }
     }
 }
