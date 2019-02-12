@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Library.Data.Entities;
 using Library.Data.Entities.Models;
 using Library.Data.Enums;
@@ -42,15 +39,6 @@ namespace Library.Domain.Repositories
                 return false;
             var availableCopies = bookToCheck.BookCopies.Where(bookCopy => bookCopy.Status == BookStatus.Available);
             return availableCopies.Count() != 0;
-        }
-        public ICollection<Book> GetAvailableBooks()
-        {
-            return _context.Books.Where(book => IsBookAvailable(book)).ToList();
-        }
-
-        public Book GetBook(int toGetId)
-        {
-            return _context.Books.Find(toGetId);
         }
 
         public void AddBook(Book toAdd)

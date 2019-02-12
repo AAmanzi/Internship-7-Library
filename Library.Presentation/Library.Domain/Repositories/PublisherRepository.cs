@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Library.Data.Entities;
 using Library.Data.Entities.Models;
 
@@ -20,11 +17,6 @@ namespace Library.Domain.Repositories
         public ICollection<Publisher> GetAllPublishers()
         {
             return _context.Publishers.ToList();
-        }
-
-        public Publisher GetPublisher(int toGetId)
-        {
-            return _context.Publishers.Find(toGetId);
         }
 
         public void AddPublisher(Publisher toAdd)

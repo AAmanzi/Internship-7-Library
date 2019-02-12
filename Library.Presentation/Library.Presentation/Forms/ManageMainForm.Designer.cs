@@ -119,7 +119,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(625, 228);
+            this.ClientSize = new System.Drawing.Size(565, 228);
             this.Controls.Add(this.TitleLabel);
             this.Controls.Add(this.StudentsButton);
             this.Controls.Add(this.PublishersButton);

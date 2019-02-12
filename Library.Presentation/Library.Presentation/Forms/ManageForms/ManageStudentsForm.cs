@@ -51,7 +51,7 @@ namespace Library.Presentation.Forms.ManageForms
 
             if (checkedStudent == null)
                 return;
-            StudentInfoListBox.Items.Add($"Date of birth");
+            StudentInfoListBox.Items.Add("Date of birth");
             StudentInfoListBox.Items.Add($"{checkedStudent.DateOfBirth :   dd-mm-yyyy}");
             StudentInfoListBox.Items.Add($"{checkedStudent.Sex}");
 
@@ -59,8 +59,8 @@ namespace Library.Presentation.Forms.ManageForms
 
             if (borrowedBooks.Count != 0)
             {
-                StudentInfoListBox.Items.Add($"");
-                StudentInfoListBox.Items.Add($"Has books:");
+                StudentInfoListBox.Items.Add("");
+                StudentInfoListBox.Items.Add("Has books:");
             }
 
             foreach (var borrowedBook in borrowedBooks)

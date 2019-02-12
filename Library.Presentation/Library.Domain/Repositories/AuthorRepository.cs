@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using Library.Data.Entities;
 using Library.Data.Entities.Models;
-using Library.Data.Enums;
 
 namespace Library.Domain.Repositories
 {
@@ -22,11 +17,6 @@ namespace Library.Domain.Repositories
         public ICollection<Author> GetAllAuthors()
         {
             return _context.Authors.ToList();
-        }
-
-        public Author GetAuthor(int toGetId)
-        {
-            return _context.Authors.Find(toGetId);
         }
 
         public void AddAuthor(Author toAdd)

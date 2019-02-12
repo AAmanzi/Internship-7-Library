@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Library.Data.Entities;
 using Library.Data.Entities.Models;
-using Library.Data.Enums;
 
 namespace Library.Domain.Repositories
 {
@@ -20,11 +16,6 @@ namespace Library.Domain.Repositories
         public ICollection<Student> GetAllStudents()
         {
             return _context.Students.ToList();
-        }
-
-        public Student GetStudent(int toGetId)
-        {
-            return _context.Students.Find(toGetId);
         }
 
         public void AddStudent(Student toAdd)

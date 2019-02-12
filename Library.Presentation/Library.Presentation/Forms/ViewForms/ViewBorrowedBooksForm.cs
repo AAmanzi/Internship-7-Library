@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows.Forms;
 using Library.Data.Enums;
 using Library.Domain.Repositories;
@@ -14,7 +7,6 @@ namespace Library.Presentation.Forms.ViewForms
 {
     public partial class ViewBorrowedBooksForm : Form
     {
-        private BookRepository _bookRepository;
         private BookCopyRepository _bookCopyRepository;
         private BorrowEventRepository _borrowEventRepository;
         public ViewBorrowedBooksForm()
@@ -25,7 +17,6 @@ namespace Library.Presentation.Forms.ViewForms
 
         private void RefreshBooksListBox()
         {
-            _bookRepository = new BookRepository();
             _bookCopyRepository = new BookCopyRepository();
             _borrowEventRepository = new BorrowEventRepository();
             BooksListBox.Items.Clear();
@@ -52,8 +43,6 @@ namespace Library.Presentation.Forms.ViewForms
         {
             BookInfoListBox.Items.Clear();
             var selected = BooksListBox.SelectedItem.ToString();
-            var checkedBook = _bookRepository.GetAllBooks()
-                .FirstOrDefault(book => book.ToString() == selected);
 
             foreach (var borrowEvent in _borrowEventRepository.GetBorrowEventsByBook(selected))
             {
