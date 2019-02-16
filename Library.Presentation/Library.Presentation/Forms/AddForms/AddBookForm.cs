@@ -86,9 +86,11 @@ namespace Library.Presentation.Forms.AddForms
 
         private bool CheckForErrors()
         {
-            if ((string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(PageCountTextBox.Text)
+            if (string.IsNullOrWhiteSpace(NameTextBox.Text) || string.IsNullOrWhiteSpace(PageCountTextBox.Text)
                                                              || string.IsNullOrWhiteSpace(NumberOfCopiesTextBox.Text)
-                                                             || string.IsNullOrWhiteSpace(GenreComboBox.Text)))
+                                                             || string.IsNullOrWhiteSpace(GenreComboBox.Text)
+                                                             || string.IsNullOrWhiteSpace(AuthorComboBox.Text)
+                                                             || string.IsNullOrWhiteSpace(PublisherComboBox.Text))
             {
                 var fieldsError = new ErrorForm("You are missing some required fields!");
                 fieldsError.ShowDialog();

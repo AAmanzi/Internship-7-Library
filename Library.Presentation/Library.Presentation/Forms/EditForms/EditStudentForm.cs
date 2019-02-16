@@ -84,6 +84,14 @@ namespace Library.Presentation.Forms.EditForms
                 return false;
             }
 
+            var studentToUpdate = _studentRepository.GetAllStudents()
+                .First(student => student.ToString() == _selectedStudent);
+
+            if (studentToUpdate.Name == NameTextBox.Text && studentToUpdate.LastName == LastNameTextBox.Text &&
+                studentToUpdate.SchoolClass == (SchoolClass) Enum.Parse(typeof(SchoolClass), ClassComboBox.Text))
+                return true;
+
+
             if (_studentRepository.GetAllStudents().FirstOrDefault(student =>
                     student.Name == NameTextBox.Text && student.LastName == LastNameTextBox.Text &&
                     student.SchoolClass == (SchoolClass) Enum.Parse(typeof(SchoolClass), ClassComboBox.Text)) ==
