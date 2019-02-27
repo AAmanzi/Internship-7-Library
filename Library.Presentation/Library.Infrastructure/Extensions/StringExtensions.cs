@@ -15,6 +15,7 @@ namespace Library.Infrastructure.Extensions
 
         public static string FirstLetterToUpper(this string text)
         {
+            text = text.Trim();
             var newText = text.ToLower().ToCharArray();
             newText[0] = char.ToUpper(newText[0]);
             return new string(newText);
