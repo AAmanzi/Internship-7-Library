@@ -41,12 +41,13 @@ namespace Library.Domain.Repositories
             return availableCopies.Count() != 0;
         }
 
-        public void AddBook(Book toAdd)
+        public bool AddBook(Book toAdd)
         {
             var tmpBook = new Book(toAdd.Name, toAdd.PageCount, toAdd.Genre,
                 _context.Authors.Find(toAdd.Author.AuthorId), _context.Publishers.Find(toAdd.Publisher.PublisherId));
             _context.Books.Add(tmpBook);
-            _context.SaveChanges();
+            var numberOfChanges = _context.SaveChanges();
+            return numberOfChanges != 0;
         }
 
         public bool TryDelete(Book toDelete)

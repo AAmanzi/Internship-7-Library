@@ -40,13 +40,14 @@ namespace Library.Domain.Repositories
                                                              borrowEvent.DateOfReturn == null).ToList();
         }
 
-        public void AddBorrowEvent(BorrowEvent toAdd)
+        public bool AddBorrowEvent(BorrowEvent toAdd)
         {
             _context.BookCopies.Find(toAdd.BookCopy.BookCopyId).Status = BookStatus.Borrowed;
             var tmpBorrowEvent = new BorrowEvent(toAdd.DateOfBorrow, null,
                 _context.Students.Find(toAdd.Student.StudentId), _context.BookCopies.Find(toAdd.BookCopy.BookCopyId));
             _context.BorrowEvents.Add(tmpBorrowEvent);
-            _context.SaveChanges();
+            var numberOfChanges = _context.SaveChanges();
+            return numberOfChanges != 0;
         }
 
         public bool ReturnBookEvent(BorrowEvent toReturn, DateTime dateOfReturn)

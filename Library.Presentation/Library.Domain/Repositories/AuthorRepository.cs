@@ -19,10 +19,11 @@ namespace Library.Domain.Repositories
             return _context.Authors.ToList();
         }
 
-        public void AddAuthor(Author toAdd)
+        public bool AddAuthor(Author toAdd)
         {
             _context.Authors.Add(toAdd);
-            _context.SaveChanges();
+            var numberOfChanges = _context.SaveChanges();
+            return numberOfChanges != 0;
         }
 
         public bool TryDelete(Author toDelete)

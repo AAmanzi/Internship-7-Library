@@ -29,11 +29,12 @@ namespace Library.Domain.Repositories
             return GetAllBookCopies().Where(bookCopy => bookCopy.Book.ToString() == bookToGet).ToList();
         }
 
-        public void AddBookCopy(BookCopy toAdd)
+        public bool AddBookCopy(BookCopy toAdd)
         {
             var tmpBookCopy = new BookCopy(toAdd.Status, _context.Books.Find(toAdd.Book.BookId));
             _context.BookCopies.Add(tmpBookCopy);
-            _context.SaveChanges();
+            var numberOfChanges = _context.SaveChanges();
+            return numberOfChanges != 0;
         }
 
         public bool TryDelete(BookCopy toDelete)

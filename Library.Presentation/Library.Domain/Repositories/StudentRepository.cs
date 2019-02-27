@@ -18,10 +18,11 @@ namespace Library.Domain.Repositories
             return _context.Students.ToList();
         }
 
-        public void AddStudent(Student toAdd)
+        public bool AddStudent(Student toAdd)
         {
             _context.Students.Add(toAdd);
-            _context.SaveChanges();
+            var numberOfChanges = _context.SaveChanges();
+            return numberOfChanges != 0;
         }
 
         public bool TryDelete(Student toDelete)
